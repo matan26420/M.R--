@@ -304,7 +304,7 @@
 </div>
 
 <script>
-    // הגדרות Firebase עם הכתובת המעודכנת
+    // הגדרות Firebase עם הכתובת החדשה והנכונה
     const firebaseConfig = {
         databaseURL: "https://mr-services26-default-rtdb.firebaseio.com"
     };
@@ -378,7 +378,7 @@
         });
     }
 
-    // טעינת תגובות בזמן אמת
+    // טעינת תגובות בזמן אמת מתוך מסד הנתונים
     reviewsRef.on('value', (snapshot) => {
         const data = snapshot.val();
         allReviews = [];
@@ -390,7 +390,7 @@
         renderReviews();
     });
 
-    // שליחת תגובה
+    // שליחת תגובה חדשה
     reviewForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -407,7 +407,7 @@
 
         let newReview = { name, category, rating, text, date };
 
-        // שמירה בענן
+        // שמירה בענן (Firebase Realtime Database)
         reviewsRef.push(newReview);
 
         // איפוס הטופס
