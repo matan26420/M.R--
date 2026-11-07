@@ -166,15 +166,21 @@
             display: flex;
             flex-direction: row-reverse;
             justify-content: flex-end;
-            gap: 5px;
-            font-size: 32px;
-            cursor: pointer;
+            gap: 8px;
+            font-size: 34px;
+            padding: 5px 0;
         }
         .star {
             color: #ddd;
-            transition: color 0.1s ease;
+            cursor: pointer;
+            padding: 0 4px;
+            display: inline-block;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            transition: color 0.1s ease, transform 0.1s ease;
         }
         .star.active { color: #ffc107; }
+        .star:active { transform: scale(1.2); }
 
         .reviews-list {
             margin-top: 20px;
@@ -286,14 +292,14 @@
                     <option value="שיפוצים">שיפוצים</option>
                     <option value="עבודות גבס">עבודות גבס</option>
                     <option value="הובלות גדולות">הובלות גדולות</option>
-                    <option value="הובלות קטנות">הובלות קטנות</option>
+                    <option value5="הובלות קטנות">הובלות קטנות</option>
                     <option value="הובלת רהיט אחד">הובלת רהיט אחד</option>
                     <option value="הובלות משרדים">הובלות משרדים</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>דירוג כוכבים (מ-0.5 עד 5):</label>
+                <label>דירוג כוכבים (לחץ על כוכב לבחירה):</label>
                 <div class="stars-container" id="starPicker">
                     <span class="star" data-value="5">★</span>
                     <span class="star" data-value="4.5">★</span>
@@ -373,11 +379,12 @@
     const stars = document.querySelectorAll('#starPicker .star');
     const submitBtn = document.getElementById('submitBtn');
 
-    // ניהול בחירת כוכבים מדויקת (חצאים ושלמים) עם רישום אירועים ישיר
+    // הוספת האזנה חזקה ופעילה לכל כוכב (גם במגע במובייל וגם בלחיצת עכבר)
     stars.forEach(star => {
-        star.addEventListener('click', function(e) {
+        const handleStarSelection = (e) => {
+            e.preventDefault();
             e.stopPropagation();
-            let val = parseFloat(this.getAttribute('data-value'));
+            let val = parseFloat(star.getAttribute('data-value'));
             reviewRatingInput.value = val;
             ratingText.innerHTML = `דירוג נבחר: ${val} מתוך 5 כוכבים`;
 
@@ -389,7 +396,10 @@
                     s.classList.remove('active');
                 }
             });
-        });
+        };
+
+        star.addEventListener('click', handleStarSelection);
+        star.addEventListener('touchend', handleStarSelection);
     });
 
     function getStarsHTML(rating) {
@@ -486,16 +496,4 @@
                     method: 'POST',
                     body: formData
                 });
-                let result = await response.json();
-                if (result && result.success) {
-                    imageUrl = result.data.url;
-                } else {
-                    alert('שגיאה בהעלאת התמונה, התגובה תפורסם ללא תמונה.');
-                }
-            } catch (error) {
-                console.error('Error uploading image:', error);
-                alert('אירעה שגיאה בחיבור לשרת התמונות.');
-            }
-        }
-
-    
+                let result = await respons
