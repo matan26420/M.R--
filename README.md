@@ -293,7 +293,7 @@
             </div>
 
             <div class="form-group">
-                <label>דירוג כוכבים:</label>
+                <label>דירוג כוכבים (מ-0.5 עד 5):</label>
                 <div class="stars-container" id="starPicker">
                     <span class="star" data-value="5">★</span>
                     <span class="star" data-value="4.5">★</span>
@@ -371,6 +371,7 @@
     const stars = document.querySelectorAll('#starPicker .star');
     const submitBtn = document.getElementById('submitBtn');
 
+    // ניהול בחירת כוכבים מדויקת (חצאים ושלמים)
     stars.forEach(star => {
         star.addEventListener('click', function() {
             let val = parseFloat(this.getAttribute('data-value'));
@@ -431,7 +432,7 @@
         });
     }
 
-    // טעינת התגובות בזמן אמת מחדש ושמירתן במערך בצורה מסודרת לכל המשתמשים
+    // טעינת תגובות בזמן אמת עבור כל המשתמשים
     reviewsRef.on('value', (snapshot) => {
         const data = snapshot.val();
         allReviews = [];
@@ -486,7 +487,7 @@
 
         let newReview = { name, category, rating, text, date, imageUrl };
         
-        // שימוש ב-push כדי להבטיח שהתגובה נשמרת בבסיס הנתונים בלי למחוק או לדרוס תגובות קודמות
+        // שמירת התגובה בבסיס הנתונים ללא דריסת תגובות קודמות
         reviewsRef.push(newReview);
 
         submitBtn.disabled = false;
@@ -498,4 +499,4 @@
         stars.forEach(s => s.classList.add('active'));
         filterCategory.value = 'all';
 
-        let whatsappMessage = `*💬 תגובה חדשה
+        let whatsappMessage = `*💬 תגובה חדשה ה
