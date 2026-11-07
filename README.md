@@ -169,6 +169,7 @@
             gap: 8px;
             font-size: 34px;
             padding: 5px 0;
+            unicode-bidi: bidi-override;
         }
         .star {
             color: #ddd;
@@ -292,7 +293,7 @@
                     <option value="שיפוצים">שיפוצים</option>
                     <option value="עבודות גבס">עבודות גבס</option>
                     <option value="הובלות גדולות">הובלות גדולות</option>
-                    <option value5="הובלות קטנות">הובלות קטנות</option>
+                    <option value="הובלות קטנות">הובלות קטנות</option>
                     <option value="הובלת רהיט אחד">הובלת רהיט אחד</option>
                     <option value="הובלות משרדים">הובלות משרדים</option>
                 </select>
@@ -379,9 +380,9 @@
     const stars = document.querySelectorAll('#starPicker .star');
     const submitBtn = document.getElementById('submitBtn');
 
-    // הוספת האזנה חזקה ופעילה לכל כוכב (גם במגע במובייל וגם בלחיצת עכבר)
+    // ניהול בחירת כוכבים אמין וישיר לכל מסך (מחשב ומובייל)
     stars.forEach(star => {
-        const handleStarSelection = (e) => {
+        const handleStarSelect = (e) => {
             e.preventDefault();
             e.stopPropagation();
             let val = parseFloat(star.getAttribute('data-value'));
@@ -398,8 +399,8 @@
             });
         };
 
-        star.addEventListener('click', handleStarSelection);
-        star.addEventListener('touchend', handleStarSelection);
+        star.addEventListener('click', handleStarSelect);
+        star.addEventListener('touchstart', handleStarSelect);
     });
 
     function getStarsHTML(rating) {
@@ -496,4 +497,4 @@
                     method: 'POST',
                     body: formData
                 });
-                let result = await respons
+                let res
