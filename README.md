@@ -194,13 +194,13 @@
 <div class="container">
     <!-- 1. הלוגו והחתימה הכי למעלה -->
     <div class="top-brand-bar">
-        <img src="14855.jpg" alt="M.R לוגו" class="brand-logo-img">
-        <img src="14351.jpg" alt="Matan Richter Signature" class="signature-top-img">
+        <img src="1760068715891.jpg" alt="M.R לוגו" class="brand-logo-img">
+        <img src="1760068716110.jpg" alt="Matan Richter Signature" class="signature-top-img">
     </div>
 
     <!-- 2. מיד מתחת: כרטיס ביקור נקי עם הדמות בלבד -->
     <div class="business-card-section">
-        <img src="14856.jpg" alt="M.R דמות" class="brand-character-img">
+        <img src="1760068716503.jpg" alt="M.R דמות" class="brand-character-img">
     </div>
 
     <h1>M.R – הכול לבית שלך!</h1>
@@ -435,5 +435,4 @@
 
 </body>
 </html>
-
 
