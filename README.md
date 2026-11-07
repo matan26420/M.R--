@@ -304,9 +304,9 @@
 </div>
 
 <script>
-    // הגדרות Firebase
+    // הגדרות Firebase עם הכתובת המעודכנת
     const firebaseConfig = {
-        databaseURL: "https://mr-services-default-rtdb.firebaseio.com"
+        databaseURL: "https://mr-services26-default-rtdb.firebaseio.com"
     };
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
