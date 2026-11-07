@@ -33,40 +33,38 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 20px;
-            margin-bottom: 25px;
+            gap: 25px;
+            margin-bottom: 30px;
         }
 
-        /* כרטיס הביקור מוגדל וברור למעלה */
+        /* כרטיס הביקור מוגדל משמעותית לקריאות מקסימלית */
         .business-card-section {
-            background: #fafafa;
-            border: 2px solid #007bff;
-            padding: 20px;
-            border-radius: 12px;
+            background: #ffffff;
+            border: 3px solid #007bff;
+            padding: 25px;
+            border-radius: 16px;
             width: 100%;
             box-sizing: border-box;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
         .brand-character-img {
-            width: 200px;
-            height: 200px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            border: 4px solid #007bff;
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* הלוגו מוגדל מתחת לכרטיס הביקור */
+        /* הלוגו מוגדל ללא מסגרת כחולה */
         .brand-logo-img {
-            width: 160px;
-            height: 160px;
+            width: 220px;
+            height: 220px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            border: 3px solid #007bff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         h1 { margin: 10px 0 5px 0; color: #222; }
@@ -93,10 +91,15 @@
         /* אזור קישורים רשתות חברתיות */
         .social-links {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
             gap: 15px;
-            margin: 20px 0;
+            margin: 25px 0;
+        }
+        .social-btns-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
             flex-wrap: wrap;
         }
         .social-btn {
@@ -115,12 +118,21 @@
         .tiktok-btn { background: #000000; }
         .whatsapp-btn { background: #25d366; }
 
-        /* חתימה קטנה בצד ה-TikTok */
+        /* חתימה מוגדלת וברורה בצד */
+        .signature-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: #f9f9f9;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
         .signature-inline-img {
-            height: 35px;
+            height: 60px;
             width: auto;
-            vertical-align: middle;
-            margin-right: 5px;
+            object-fit: contain;
         }
 
         /* סקציית תגובות */
@@ -207,24 +219,29 @@
 
 <div class="container">
     <div class="top-brand-bar">
-        <!-- 1. כרטיס ביקור מוגדל וברור בחלק העליון -->
+        <!-- 1. כרטיס ביקור מוגדל וקריא בחלק העליון -->
         <div class="business-card-section">
             <img src="1793908727293.jpg" alt="M.R כרטיס ביקור" class="brand-character-img">
         </div>
 
-        <!-- 2. הלוגו המוגדל מופיע בהמשך בחלק העליון -->
+        <!-- 2. הלוגו מוגדל ללא מסגרת -->
         <img src="1793908641410.jpg" alt="M.R לוגו" class="brand-logo-img">
     </div>
 
     <h1>M.R – הכול לבית שלך!</h1>
     <p>שירות מקיף, מקצועי ומהיר בכל מקום בישראל</p>
 
-    <!-- כפתורי תקשורת ורשתות חברתיות עם חתימה מוקטנת בצד TikTok -->
+    <!-- כפתורי תקשורת וחתימה מוגדלת וברורה -->
     <div class="social-links">
-        <a href="https://wa.me/972559423309?text=שלום%2C%20אשמח%20לקבל%20פרטים%20נוספים" class="social-btn whatsapp-btn">💬 WhatsApp · 055-9423309</a>
-        <a href="https://www.instagram.com/m.r26420" target="_blank" class="social-btn instagram-btn">📸 Instagram @m.r26420</a>
-        <a href="https://www.tiktok.com/@m.r26420" target="_blank" class="social-btn tiktok-btn">🎵 TikTok @m.r26420</a>
-        <img src="IMG_20261021_205959.jpg" alt="חתימה" class="signature-inline-img">
+        <div class="social-btns-row">
+            <a href="https://wa.me/972559423309?text=שלום%2C%20אשמח%20לקבל%20פרטים%20נוספים" class="social-btn whatsapp-btn">💬 WhatsApp · 055-9423309</a>
+            <a href="https://www.instagram.com/m.r26420" target="_blank" class="social-btn instagram-btn">📸 Instagram @m.r26420</a>
+            <a href="https://www.tiktok.com/@m.r26420" target="_blank" class="social-btn tiktok-btn">🎵 TikTok @m.r26420</a>
+        </div>
+        <div class="signature-container">
+            <span style="font-size: 12px; color: #666; font-weight: bold;">חתימת העסק:</span>
+            <img src="IMG_20261021_205959.jpg" alt="חתימה" class="signature-inline-img">
+        </div>
     </div>
 
     <h2>בחרו שירות</h2>
@@ -232,7 +249,7 @@
         <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודת%20אינסטלציה.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🚰 אינסטלציה</a>
         <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודת%20צבע.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🎨 צבע</a>
         <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בחידוש%20רהיטים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🛋️ חידוש רהיטים</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בניקיון.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🧹 ניקיון</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בניקיון.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20mצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🧹 ניקיון</a>
         <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהריסות.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🧱 הריסות</a>
         <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בשיפוצים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">📐 שיפוצים</a>
         <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודות%20גבס.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🪚 עבודות גבס</a>
@@ -480,16 +497,4 @@
 
         let whatsappMessage = `*💬 תגובה חדשה התקבלה באתר!*%0A%0A` +
                               `👤 *שם:* ${encodeURIComponent(name)}%0A` +
-                              `🏷️ *קטגוריה:* ${encodeURIComponent(category)}%0A` +
-                              `⭐ *דירוג:* ${rating} כוכבים%0A` +
-                              `📝 *תוכן התגובה:* ${encodeURIComponent(text)}` +
-                              (imageUrl ? `%0A🖼️ *תמונת העבודה:* ${imageUrl}` : '');
-
-        let whatsappUrl = `https://wa.me/972559423309?text=${whatsappMessage}`;
-        window.open(whatsappUrl, '_blank');
-    });
-</script>
-
-</body>
-</html>
-
+                              `🏷️ *קטגוריה:* ${encodeURIComponent(category)
