@@ -168,11 +168,11 @@
             justify-content: flex-end;
             gap: 5px;
             font-size: 32px;
+            cursor: pointer;
         }
         .star {
             color: #ddd;
-            cursor: pointer;
-            transition: color 0.2s;
+            transition: color 0.1s ease;
         }
         .star.active { color: #ffc107; }
 
@@ -357,7 +357,9 @@
     const firebaseConfig = {
         databaseURL: "https://mr-services26-default-rtdb.firebaseio.com"
     };
-    firebase.initializeApp(firebaseConfig);
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
+    }
     const database = firebase.database();
     const reviewsRef = database.ref('reviews');
 
@@ -371,9 +373,10 @@
     const stars = document.querySelectorAll('#starPicker .star');
     const submitBtn = document.getElementById('submitBtn');
 
-    // ניהול בחירת כוכבים מדויקת (חצאים ושלמים)
+    // ניהול בחירת כוכבים מדויקת (חצאים ושלמים) עם רישום אירועים ישיר
     stars.forEach(star => {
-        star.addEventListener('click', function() {
+        star.addEventListener('click', function(e) {
+            e.stopPropagation();
             let val = parseFloat(this.getAttribute('data-value'));
             reviewRatingInput.value = val;
             ratingText.innerHTML = `דירוג נבחר: ${val} מתוך 5 כוכבים`;
@@ -388,7 +391,6 @@
             });
         });
     });
-    stars.forEach(s => s.classList.add('active'));
 
     function getStarsHTML(rating) {
         let fulls = Math.floor(rating);
@@ -405,7 +407,7 @@
 
         let filteredReviews = allReviews;
         if (selectedFilter !== 'all') {
-            filteredReviews = allReviews.filter(r => r.category === selectedFilter);
+            filteredReviews = allReviews.filter(r => r && r.category === selectedFilter);
         }
 
         if (filteredReviews.length === 0) {
@@ -414,6 +416,7 @@
         }
 
         filteredReviews.forEach(review => {
+            if (!review) return;
             let card = document.createElement('div');
             card.className = 'review-card';
             
@@ -421,15 +424,22 @@
 
             card.innerHTML = `
                 <div class="review-header">
-                    <span>👤 ${review.name} <span style="color: #007bff; font-weight: normal;">(${review.category})</span></span>
+                    <span>👤 ${escapeHTML(review.name)} <span style="color: #007bff; font-weight: normal;">(${escapeHTML(review.category)})</span></span>
                     <span>${getStarsHTML(review.rating)}</span>
                 </div>
-                <p style="margin: 8px 0; color: #333; word-break: break-word;">${review.text}</p>
+                <p style="margin: 8px 0; color: #333; word-break: break-word;">${escapeHTML(review.text)}</p>
                 ${imageHTML}
-                <div style="font-size: 11px; color: #888; text-align: left; margin-top: 10px;">📅 ${review.date}</div>
+                <div style="font-size: 11px; color: #888; text-align: left; margin-top: 10px;">📅 ${escapeHTML(review.date || '')}</div>
             `;
             reviewsList.appendChild(card);
         });
+    }
+
+    function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/[&<>'"]/g, 
+            tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+        );
     }
 
     // טעינת תגובות בזמן אמת עבור כל המשתמשים
@@ -438,7 +448,9 @@
         allReviews = [];
         if (data) {
             Object.keys(data).forEach(key => {
-                allReviews.unshift(data[key]);
+                if (data[key]) {
+                    allReviews.unshift(data[key]);
+                }
             });
         }
         renderReviews();
@@ -451,11 +463,12 @@
         let category = document.getElementById('reviewCategory').value;
         let rating = parseFloat(reviewRatingInput.value);
         let text = document.getElementById('reviewText').value.trim();
-        let imageFile = document.getElementById('reviewImage').files[0];
+        let imageInput = document.getElementById('reviewImage');
+        let imageFile = imageInput.files ? imageInput.files[0] : null;
         let date = new Date().toLocaleDateString('he-IL');
 
-        if (!name || !category || !text) {
-            alert('אנא מלא את כל השדות בטופס.');
+        if (!name || !category || !text || isNaN(rating)) {
+            alert('אנא מלא את כל השדות בטופס בצורה תקינה.');
             return;
         }
 
@@ -474,29 +487,15 @@
                     body: formData
                 });
                 let result = await response.json();
-                if (result.success) {
+                if (result && result.success) {
                     imageUrl = result.data.url;
                 } else {
                     alert('שגיאה בהעלאת התמונה, התגובה תפורסם ללא תמונה.');
                 }
             } catch (error) {
-                console.error(error);
+                console.error('Error uploading image:', error);
                 alert('אירעה שגיאה בחיבור לשרת התמונות.');
             }
         }
 
-        let newReview = { name, category, rating, text, date, imageUrl };
-        
-        // שמירת התגובה בבסיס הנתונים ללא דריסת תגובות קודמות
-        reviewsRef.push(newReview);
-
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = 'פרסם תגובה באתר ושלח לוואטסאפ 🚀';
-
-        reviewForm.reset();
-        reviewRatingInput.value = '5';
-        ratingText.innerHTML = 'דירוג נבחר: 5 מתוך 5 כוכבים';
-        stars.forEach(s => s.classList.add('active'));
-        filterCategory.value = 'all';
-
-        let whatsappMessage = `*💬 תגובה חדשה ה
+    
