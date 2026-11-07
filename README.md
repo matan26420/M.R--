@@ -497,4 +497,52 @@
                     method: 'POST',
                     body: formData
                 });
-                let res
+                let result = await response.json();
+                if (result && result.success) {
+                    imageUrl = result.data.url;
+                } else {
+                    alert('שגיאה בהעלאת התמונה, התגובה תפורסם ללא תמונה.');
+                }
+            } catch (error) {
+                console.error('Error uploading image:', error);
+                alert('אירעה שגיאה בחיבור לשרת התמונות.');
+            }
+        }
+
+        let newReview = { name, category, rating, text, date, imageUrl };
+        
+        try {
+            let newRef = reviewsRef.push();
+            await newRef.set(newReview);
+
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'פרסם תגובה באתר ושלח לוואטסאפ 🚀';
+
+            reviewForm.reset();
+            reviewRatingInput.value = '5';
+            ratingText.innerHTML = 'דירוג נבחר: 5 מתוך 5 כוכבים';
+            stars.forEach(s => s.classList.add('active'));
+            filterCategory.value = 'all';
+
+            let whatsappMessage = `*💬 תגובה חדשה התקבלה באתר!*%0A%0A` +
+                                  `👤 *שם:* ${encodeURIComponent(name)}%0A` +
+                                  `🏷️ *קטגוריה:* ${encodeURIComponent(category)}%0A` +
+                                  `⭐ *דירוג:* ${rating} כוכבים%0A` +
+                                  `📝 *תוכן התגובה:* ${encodeURIComponent(text)}` +
+                                  (imageUrl ? `%0A🖼️ *תמונת העבודה:* ${imageUrl}` : '');
+
+            let whatsappUrl = `https://wa.me/972559423309?text=${whatsappMessage}`;
+            window.open(whatsappUrl, '_blank');
+        } catch (error) {
+            console.error('Error saving review:', error);
+            alert('שגיאה בשמירת התגובה. אנא נסה שוב.');
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = 'פרסם תגובה באתר ושלח לוואטסאפ 🚀';
+        }
+    });
+
+    renderReviews();
+</script>
+
+</body>
+</html>
