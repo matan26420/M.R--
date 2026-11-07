@@ -4,26 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M.R – הכול לבית שלך!</title>
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f4f4f9;
             color: #333;
             margin: 0;
             padding: 20px;
             text-align: center;
         }
-        h1, h2 {
-            color: #222;
-        }
         .container {
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
             background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
+        
+        /* ראש העמוד - דמות ולוגו */
+        .brand-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .brand-character-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 3px solid #007bff;
+        }
+        .brand-logo-img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 3px solid #007bff;
+        }
+        
+        h1 { margin: 10px 0 5px 0; color: #222; }
+        h2 { color: #007bff; margin-top: 25px; }
+
         .services-grid, .moves-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -34,17 +66,41 @@
             display: block;
             background: #007bff;
             color: white;
-            padding: 10px;
+            padding: 12px;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-weight: bold;
             transition: background 0.3s;
         }
-        a.btn:hover {
-            background: #0056b3;
+        a.btn:hover { background: #0056b3; }
+
+        /* אזור קישורים רשתות חברתיות */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+            flex-wrap: wrap;
         }
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 6px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .instagram-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .tiktok-btn { background: #000000; }
+        .whatsapp-btn { background: #25d366; }
+
+        /* סקציית תגובות */
         .reviews-section {
-            margin-top: 40px;
+            margin-top: 30px;
             background: #fafafa;
             border: 2px dashed #007bff;
             padding: 20px;
@@ -69,23 +125,19 @@
             font-size: 14px;
         }
         
-        /* עיצוב כוכבים פיזיים */
         .stars-container {
             display: flex;
             flex-direction: row-reverse;
             justify-content: flex-end;
             gap: 5px;
             font-size: 32px;
-            cursor: pointer;
         }
         .star {
             color: #ddd;
             cursor: pointer;
             transition: color 0.2s;
         }
-        .star.active {
-            color: #ffc107;
-        }
+        .star.active { color: #ffc107; }
 
         .reviews-list {
             margin-top: 20px;
@@ -109,13 +161,19 @@
             color: #444;
             margin-bottom: 5px;
         }
-        .filter-container {
-            margin-bottom: 15px;
-            text-align: right;
+        
+        /* חתימה בסוף */
+        .footer-signature {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .signature-img {
+            max-width: 220px;
+            height: auto;
+            margin-bottom: 10px;
         }
         footer {
-            margin-top: 20px;
-            font-size: 12px;
+            font-size: 13px;
             color: #777;
         }
     </style>
@@ -123,11 +181,20 @@
 <body>
 
 <div class="container">
+    <!-- ראש העמוד עם הדמות והלוגו -->
+    <div class="brand-header">
+        <img src="14856.jpg" alt="M.R דמות" class="brand-character-img">
+        <img src="14855.jpg" alt="M.R לוגו" class="brand-logo-img">
+    </div>
+    
     <h1>M.R – הכול לבית שלך!</h1>
-    <p>שירות מקיף ומקצועי ומהיר בכל מקום בישראל</p>
+    <p>שירות מקיף, מקצועי ומהיר בכל מקום בישראל</p>
 
-    <div style="margin: 20px 0;">
-        <a href="https://wa.me/972559423309" class="btn" style="background: #25d366; display: inline-block;">💬 WhatsApp · 055-9423309</a>
+    <!-- כפתורי תקשורת ורשתות חברתיות -->
+    <div class="social-links">
+        <a href="https://wa.me/972559423309" class="social-btn whatsapp-btn">💬 WhatsApp · 055-9423309</a>
+        <a href="https://www.instagram.com/m.r26420" target="_blank" class="social-btn instagram-btn">📸 Instagram @m.r26420</a>
+        <a href="https://www.tiktok.com/@m.r26420" target="_blank" class="social-btn tiktok-btn">🎵 TikTok @m.r26420</a>
     </div>
 
     <h2>בחרו שירות</h2>
@@ -149,7 +216,7 @@
         <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20בהובלות%20משרדים">🏢 הובלות משרדים</a>
     </div>
 
-    <!-- אזור תגובות ודירוגים -->
+    <!-- אזור תגובות -->
     <div class="reviews-section">
         <h2>⭐ תגובות לקוחות ודירוגים</h2>
         <h3>✍️ השאר תגובה ודרג אותנו:</h3>
@@ -179,7 +246,7 @@
             </div>
 
             <div class="form-group">
-                <label>דירוג כוכבים (לחץ על הכוכבים לבחירה, כולל חצאים):</label>
+                <label>דירוג כוכבים:</label>
                 <div class="stars-container" id="starPicker">
                     <span class="star" data-value="5">★</span>
                     <span class="star" data-value="4.5">★</span>
@@ -201,15 +268,14 @@
                 <textarea id="reviewText" rows="3" required placeholder="כתוב כאן את חוות דעתך..."></textarea>
             </div>
 
-            <button type="submit" class="btn" style="background: #28a745; width: 100%; border: none; cursor: pointer; font-size: 16px; padding: 12px;">פרסם תגובה באתר ושלח לוואטסאפ 🚀</button>
+            <button type="submit" class="btn" style="background: #28a745; width: 100%; border: none; cursor: pointer; font-size: 16px;">פרסם תגובה באתר ושלח לוואטסאפ 🚀</button>
         </form>
 
-        <!-- אזור הצגה וסינון תגובות -->
         <div style="margin-top: 35px;">
-            <div class="filter-container">
-                <label for="filterCategory" style="display: inline-block; margin-left: 10px; font-weight: bold;">סנן תגובות לפי קטגוריה:</label>
-                <select id="filterCategory" onchange="renderReviews()" style="width: 220px; display: inline-block;">
-                    <option value="all">הצג הכל (מכל הקטגוריות)</option>
+            <div class="filter-container" style="text-align: right; margin-bottom: 15px;">
+                <label for="filterCategory" style="font-weight: bold; margin-left: 10px;">סנן תגובות לפי קטגוריה:</label>
+                <select id="filterCategory" onchange="renderReviews()" style="width: 200px; padding: 5px;">
+                    <option value="all">הצג הכל</option>
                     <option value="אינסטלציה">אינסטלציה</option>
                     <option value="צבע">צבע</option>
                     <option value="חידוש רהיטים">חידוש רהיטים</option>
@@ -225,18 +291,28 @@
             </div>
 
             <div class="reviews-list" id="reviewsList">
-                <!-- כאן יופיעו התגובות -->
+                <p style="color: #777;">טוען תגובות...</p>
             </div>
         </div>
     </div>
 
-    <footer>
-        Matan Richter© M.R הכול לבית
-    </footer>
+    <!-- חתימה מובנית בתחתית -->
+    <div class="footer-signature">
+        <img src="14351.jpg" alt="Matan Richter Signature" class="signature-img">
+        <footer>Matan Richter © M.R הכול לבית</footer>
+    </div>
 </div>
 
 <script>
-    let reviews = JSON.parse(localStorage.getItem('mr_reviews')) || [];
+    // הגדרות Firebase
+    const firebaseConfig = {
+        databaseURL: "https://mr-services-default-rtdb.firebaseio.com"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+    const reviewsRef = database.ref('reviews');
+
+    let allReviews = [];
 
     const reviewForm = document.getElementById('reviewForm');
     const reviewsList = document.getElementById('reviewsList');
@@ -245,7 +321,7 @@
     const ratingText = document.getElementById('ratingText');
     const stars = document.querySelectorAll('#starPicker .star');
 
-    // ניהול בחירת כוכבים פיזית (כולל חצאים)
+    // ניהול בחירת כוכבים
     stars.forEach(star => {
         star.addEventListener('click', function() {
             let val = parseFloat(this.getAttribute('data-value'));
@@ -262,8 +338,6 @@
             });
         });
     });
-
-    // סימון 5 כוכבים כברירת מחדל בהעלאת העמוד
     stars.forEach(s => s.classList.add('active'));
 
     function getStarsHTML(rating) {
@@ -279,9 +353,9 @@
         reviewsList.innerHTML = '';
         let selectedFilter = filterCategory.value;
 
-        let filteredReviews = reviews;
+        let filteredReviews = allReviews;
         if (selectedFilter !== 'all') {
-            filteredReviews = reviews.filter(r => r.category === selectedFilter);
+            filteredReviews = allReviews.filter(r => r.category === selectedFilter);
         }
 
         if (filteredReviews.length === 0) {
@@ -304,6 +378,19 @@
         });
     }
 
+    // טעינת תגובות בזמן אמת
+    reviewsRef.on('value', (snapshot) => {
+        const data = snapshot.val();
+        allReviews = [];
+        if (data) {
+            Object.keys(data).forEach(key => {
+                allReviews.unshift(data[key]);
+            });
+        }
+        renderReviews();
+    });
+
+    // שליחת תגובה
     reviewForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -320,16 +407,17 @@
 
         let newReview = { name, category, rating, text, date };
 
-        reviews.unshift(newReview);
-        localStorage.setItem('mr_reviews', JSON.stringify(reviews));
+        // שמירה בענן
+        reviewsRef.push(newReview);
 
+        // איפוס הטופס
         reviewForm.reset();
         reviewRatingInput.value = '5';
         ratingText.innerHTML = 'דירוג נבחר: 5 מתוך 5 כוכבים';
         stars.forEach(s => s.classList.add('active'));
         filterCategory.value = 'all';
-        renderReviews();
 
+        // שליחה לוואטסאפ
         let whatsappMessage = `*💬 תגובה חדשה התקבלה באתר!*%0A%0A` +
                               `👤 *שם:* ${encodeURIComponent(name)}%0A` +
                               `🏷️ *קטגוריה:* ${encodeURIComponent(category)}%0A` +
@@ -339,8 +427,6 @@
         let whatsappUrl = `https://wa.me/972559423309?text=${whatsappMessage}`;
         window.open(whatsappUrl, '_blank');
     });
-
-    renderReviews();
 </script>
 
 </body>
