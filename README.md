@@ -42,13 +42,13 @@
             margin-bottom: 30px;
         }
 
-        /* כרטיס הביקור מוגדל ומרובע ללא מסגרת כחולה */
+        /* כרטיס הביקור מרובע, מוגדל משמעותית וללא מסגרת כחולה */
         .business-card-section {
             background: #ffffff;
-            padding: 15px;
-            border-radius: 16px;
+            padding: 10px;
+            border-radius: 12px;
             width: 100%;
-            max-width: 450px;
+            max-width: 520px;
             box-sizing: border-box;
             display: flex;
             justify-content: center;
@@ -58,20 +58,22 @@
         .brand-character-img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         /* הלוגו מוגדל ללא מסגרת כחולה */
         .brand-logo-img {
-            width: 240px;
+            width: 260px;
             height: 240px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        h1 { margin: 10px 0 5px 0; color: #222; font-size: 28px; }
+        h1 { margin: 10px 0 5px 0; color: #222; font-size: 30px; font-weight: bold; }
         h2 { color: #007bff; margin-top: 25px; }
 
         .services-grid, .moves-grid {
@@ -122,25 +124,28 @@
         .tiktok-btn { background: #000000; }
         .whatsapp-btn { background: #25d366; }
 
-        /* חתימה מוגדלת וברורה בצד */
+        /* חתימה מוגדלת וברורה משמעותית */
         .signature-container {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
             background: #f9f9f9;
-            padding: 15px 25px;
+            padding: 15px 30px;
             border-radius: 12px;
             border: 1px solid #e0e0e0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            width: 100%;
+            max-width: 450px;
+            box-sizing: border-box;
         }
         .signature-label {
-            font-size: 16px;
-            color: #444;
+            font-size: 18px;
+            color: #333;
             font-weight: bold;
         }
         .signature-inline-img {
-            max-height: 100px;
+            max-height: 120px;
             width: auto;
             object-fit: contain;
         }
@@ -365,7 +370,7 @@
         </div>
     </div>
 
-    <footer>Matan Richter © M.R הכל לבית</footer>
+    <footer>Matan Richter © M.R. הכל לבית</footer>
 </div>
 
 <script>
