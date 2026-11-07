@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
@@ -179,6 +180,13 @@
             color: #444;
             margin-bottom: 5px;
         }
+        .review-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 6px;
+            margin-top: 10px;
+            display: block;
+        }
         
         footer {
             margin-top: 30px;
@@ -284,7 +292,13 @@
                 <textarea id="reviewText" rows="3" required placeholder="כתוב כאן את חוות דעתך..."></textarea>
             </div>
 
-            <button type="submit" class="btn" style="background: #28a745; width: 100%; border: none; cursor: pointer; font-size: 16px;">פרסם תגובה באתר ושלח לוואטסאפ 🚀</button>
+            <!-- שדה להעלאת תמונת עבודה -->
+            <div class="form-group">
+                <label for="reviewImage">צרף תמונה להוכחת העבודה (אופציונלי):</label>
+                <input type="file" id="reviewImage" accept="image/*">
+            </div>
+
+            <button type="submit" class="btn" id="submitBtn" style="background: #28a745; width: 100%; border: none; cursor: pointer; font-size: 16px;">פרסם תגובה באתר ושלח לוואטסאפ 🚀</button>
         </form>
 
         <div style="margin-top: 35px;">
@@ -316,6 +330,8 @@
 </div>
 
 <script>
+    const IMGBB_API_KEY = "5ee34ed3831b8891e8b5f0d06ecba391";
+
     const firebaseConfig = {
         databaseURL: "https://mr-services26-default-rtdb.firebaseio.com"
     };
@@ -331,6 +347,7 @@
     const reviewRatingInput = document.getElementById('reviewRating');
     const ratingText = document.getElementById('ratingText');
     const stars = document.querySelectorAll('#starPicker .star');
+    const submitBtn = document.getElementById('submitBtn');
 
     stars.forEach(star => {
         star.addEventListener('click', function() {
@@ -376,13 +393,17 @@
         filteredReviews.forEach(review => {
             let card = document.createElement('div');
             card.className = 'review-card';
+            
+            let imageHTML = review.imageUrl ? `<img src="${review.imageUrl}" alt="תמונת עבודה" class="review-image">` : '';
+
             card.innerHTML = `
                 <div class="review-header">
                     <span>👤 ${review.name} <span style="color: #007bff; font-weight: normal;">(${review.category})</span></span>
                     <span>${getStarsHTML(review.rating)}</span>
                 </div>
                 <p style="margin: 8px 0; color: #333; word-break: break-word;">${review.text}</p>
-                <div style="font-size: 11px; color: #888; text-align: left;">📅 ${review.date}</div>
+                ${imageHTML}
+                <div style="font-size: 11px; color: #888; text-align: left; margin-top: 10px;">📅 ${review.date}</div>
             `;
             reviewsList.appendChild(card);
         });
@@ -399,13 +420,14 @@
         renderReviews();
     });
 
-    reviewForm.addEventListener('submit', function(e) {
+    reviewForm.addEventListener('submit', async function(e) {
         e.preventDefault();
 
         let name = document.getElementById('reviewerName').value.trim();
         let category = document.getElementById('reviewCategory').value;
         let rating = parseFloat(reviewRatingInput.value);
         let text = document.getElementById('reviewText').value.trim();
+        let imageFile = document.getElementById('reviewImage').files[0];
         let date = new Date().toLocaleDateString('he-IL');
 
         if (!name || !category || !text) {
@@ -413,8 +435,37 @@
             return;
         }
 
-        let newReview = { name, category, rating, text, date };
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = 'מעלה תמונה ושולח... ⏳';
+
+        let imageUrl = '';
+
+        if (imageFile) {
+            try {
+                let formData = new FormData();
+                formData.append('image', imageFile);
+
+                let response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                    method: 'POST',
+                    body: formData
+                });
+                let result = await response.json();
+                if (result.success) {
+                    imageUrl = result.data.url;
+                } else {
+                    alert('שגיאה בהעלאת התמונה, התגובה תפורסם ללא תמונה.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('אירעה שגיאה בחיבור לשרת התמונות.');
+            }
+        }
+
+        let newReview = { name, category, rating, text, date, imageUrl };
         reviewsRef.push(newReview);
+
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'פרסם תגובה באתר ושלח לוואטסאפ 🚀';
 
         reviewForm.reset();
         reviewRatingInput.value = '5';
@@ -426,7 +477,8 @@
                               `👤 *שם:* ${encodeURIComponent(name)}%0A` +
                               `🏷️ *קטגוריה:* ${encodeURIComponent(category)}%0A` +
                               `⭐ *דירוג:* ${rating} כוכבים%0A` +
-                              `📝 *תוכן התגובה:* ${encodeURIComponent(text)}`;
+                              `📝 *תוכן התגובה:* ${encodeURIComponent(text)}` +
+                              (imageUrl ? `%0A🖼️ *תמונת העבודה:* ${imageUrl}` : '');
 
         let whatsappUrl = `https://wa.me/972559423309?text=${whatsappMessage}`;
         window.open(whatsappUrl, '_blank');
