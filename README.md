@@ -27,30 +27,60 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
-        /* ראש העמוד - דמות ולוגו */
-        .brand-header {
+        /* ראש העמוד - לוגו וחתימה (הכי למעלה) */
+        .top-brand-bar {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .brand-logo-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 3px solid #007bff;
+        }
+        .signature-top-img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        /* מתחת ללוגו - כרטיס ביקור ודמות */
+        .business-card-section {
+            background: #fafafa;
+            border: 2px solid #007bff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
             flex-wrap: wrap;
         }
         .brand-character-img {
-            width: 130px;
-            height: 130px;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            border: 3px solid #007bff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+            border: 2px solid #007bff;
         }
-        .brand-logo-img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            border: 3px solid #007bff;
+        .business-card-info {
+            text-align: right;
+        }
+        .business-card-info h3 {
+            margin: 0 0 5px 0;
+            color: #007bff;
+        }
+        .business-card-info p {
+            margin: 3px 0;
+            font-size: 14px;
+            color: #555;
         }
         
         h1 { margin: 10px 0 5px 0; color: #222; }
@@ -162,58 +192,62 @@
             margin-bottom: 5px;
         }
         
-        /* חתימה בסוף */
-        .footer-signature {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .signature-img {
-            max-width: 220px;
-            height: auto;
-            margin-bottom: 10px;
-        }
         footer {
+            margin-top: 30px;
             font-size: 13px;
             color: #777;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- ראש העמוד עם הדמות והלוגו -->
-    <div class="brand-header">
-        <img src="14856.jpg" alt="M.R דמות" class="brand-character-img">
+    <!-- 1. הלוגו והחתימה הכי למעלה -->
+    <div class="top-brand-bar">
         <img src="14855.jpg" alt="M.R לוגו" class="brand-logo-img">
+        <img src="14351.jpg" alt="Matan Richter Signature" class="signature-top-img">
     </div>
-    
+
+    <!-- 2. מיד מתחת: כרטיס ביקור עם הדמות -->
+    <div class="business-card-section">
+        <img src="14856.jpg" alt="M.R דמות" class="brand-character-img">
+        <div class="business-card-info">
+            <h3>M.R – הכול לבית שלך!</h3>
+            <p><strong>מתן ריכטר</strong></p>
+            <p>שירות מקיף, מקצועי ומהיר בכל הארץ</p>
+            <p>📞 טלפון/וואטסאפ: 055-9423309</p>
+        </div>
+    </div>
+
     <h1>M.R – הכול לבית שלך!</h1>
     <p>שירות מקיף, מקצועי ומהיר בכל מקום בישראל</p>
 
     <!-- כפתורי תקשורת ורשתות חברתיות -->
     <div class="social-links">
-        <a href="https://wa.me/972559423309" class="social-btn whatsapp-btn">💬 WhatsApp · 055-9423309</a>
+        <a href="https://wa.me/972559423309?text=שלום%2C%20אשמח%20לקבל%20פרטים%20נוספים" class="social-btn whatsapp-btn">💬 WhatsApp · 055-9423309</a>
         <a href="https://www.instagram.com/m.r26420" target="_blank" class="social-btn instagram-btn">📸 Instagram @m.r26420</a>
         <a href="https://www.tiktok.com/@m.r26420" target="_blank" class="social-btn tiktok-btn">🎵 TikTok @m.r26420</a>
     </div>
 
     <h2>בחרו שירות</h2>
     <div class="services-grid">
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20באינסטלציה">🚰 אינסטלציה</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20בצבע">🎨 צבע</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20בחידוש%20רהיטים">🛋️ חידוש רהיטים</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20בניקיון">🧹 ניקיון</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20בהריסות">🧱 הריסות</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20בשיפוצים">📐 שיפוצים</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20בעבודות%20גבס">🪚 עבודות גבס</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20באינסטלציה.%20תן%20לי%20הצעת%20מחיר%20בבקשה.%20מצורפות%20תמונות%3A">🚰 אינסטלציה</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בצבע.%20תן%20לי%20הצעת%20מחיר%20בבקשה.%20מצורפות%20תמונות%3A">🎨 צבע</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בחידוש%20רהיטים.%20תן%20לי%20הצעת%20מחיר%20בבקשה.%20מצורפות%20תמונות%3A">🛋️ חידוש רהיטים</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בניקיון.%20תן%20לי%20הצעת%20מחיר%20בבקשה.%20מצורפות%20תמונות%3A">🧹 ניקיון</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהריסות.%20תן%20לי%20הצעת%20מחיר%20בבקשה.%20מצורפות%20תמונות%3A">🧱 הריסות</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בשיפוצים.%20תן%20לי%20הצעת%20מחיר%20בבקשה.%20מצורפות%20תמונות%3A">📐 שיפוצים</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודות%20גבס.%20תן%20לי%20הצעת%20מחיר%20בבקשה.%20מצורפות%20תמונות%3A">🪚 עבודות גבס</a>
     </div>
 
     <h2>🚚 הובלות</h2>
     <div class="moves-grid">
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20בהובלות%20גדולות">🚛 הובלות גדולות</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20בהובלות%20קטנות">📦 הובלות קטנות</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20בהובלת%20רהיט%20אחד">🛋️ הובלת רהיט אחד</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%20אני%20מעוניין%20בהובלות%20משרדים">🏢 הובלות משרדים</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20גדולות.%20תן%20לי%20הצעת%20מחיר%20בבקשה.%20מצורפות%20תמונות%3A">🚛 הובלות גדולות</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20קטנות.%20תן%20לי%20הצעת%20מחיר%20בבקשה.%20מצורפות%20תמונות%3A">📦 הובלות קטנות</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלת%20רהיט%20אחד.%20תן%20לי%20הצעת%20מחיר%20בבקשה.%20מצורפות%20תמונות%3A">🛋️ הובלת רהיט אחד</a>
+        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20משרדים.%20תן%20לי%20הצעת%20מחיר%20בבקשה.%20מצורפות%20תמונות%3A">🏢 הובלות משרדים</a>
     </div>
 
     <!-- אזור תגובות -->
@@ -296,15 +330,10 @@
         </div>
     </div>
 
-    <!-- חתימה מובנית בתחתית -->
-    <div class="footer-signature">
-        <img src="14351.jpg" alt="Matan Richter Signature" class="signature-img">
-        <footer>Matan Richter © M.R הכול לבית</footer>
-    </div>
+    <footer>Matan Richter © M.R הכול לבית</footer>
 </div>
 
 <script>
-    // הגדרות Firebase עם הכתובת החדשה והנכונה
     const firebaseConfig = {
         databaseURL: "https://mr-services26-default-rtdb.firebaseio.com"
     };
@@ -321,7 +350,6 @@
     const ratingText = document.getElementById('ratingText');
     const stars = document.querySelectorAll('#starPicker .star');
 
-    // ניהול בחירת כוכבים
     stars.forEach(star => {
         star.addEventListener('click', function() {
             let val = parseFloat(this.getAttribute('data-value'));
@@ -378,7 +406,6 @@
         });
     }
 
-    // טעינת תגובות בזמן אמת מתוך מסד הנתונים
     reviewsRef.on('value', (snapshot) => {
         const data = snapshot.val();
         allReviews = [];
@@ -390,7 +417,6 @@
         renderReviews();
     });
 
-    // שליחת תגובה חדשה
     reviewForm.addEventListener('submit', function(e) {
         e.preventDefault();
 
@@ -406,18 +432,14 @@
         }
 
         let newReview = { name, category, rating, text, date };
-
-        // שמירה בענן (Firebase Realtime Database)
         reviewsRef.push(newReview);
 
-        // איפוס הטופס
         reviewForm.reset();
         reviewRatingInput.value = '5';
         ratingText.innerHTML = 'דירוג נבחר: 5 מתוך 5 כוכבים';
         stars.forEach(s => s.classList.add('active'));
         filterCategory.value = 'all';
 
-        // שליחה לוואטסאפ
         let whatsappMessage = `*💬 תגובה חדשה התקבלה באתר!*%0A%0A` +
                               `👤 *שם:* ${encodeURIComponent(name)}%0A` +
                               `🏷️ *קטגוריה:* ${encodeURIComponent(category)}%0A` +
@@ -431,3 +453,4 @@
 
 </body>
 </html>
+
