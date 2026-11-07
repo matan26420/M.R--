@@ -27,50 +27,48 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
-        /* ראש העמוד - לוגו וחתימה (הכי למעלה) */
+        /* אזור כרטיס הביקור והלוגו בחלק העליון */
         .top-brand-bar {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        .brand-logo-img {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            border: 3px solid #007bff;
-        }
-        .signature-top-img {
-            max-width: 180px;
-            height: auto;
+            margin-bottom: 25px;
         }
 
-        /* מתחת ללוגו - כרטיס ביקור עם הדמות */
+        /* כרטיס הביקור מוגדל וברור למעלה */
         .business-card-section {
             background: #fafafa;
             border: 2px solid #007bff;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 12px;
+            width: 100%;
+            box-sizing: border-box;
             display: flex;
-            align-items: center;
             justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         .brand-character-img {
-            width: 110px;
-            height: 110px;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            border: 4px solid #007bff;
+        }
+
+        /* הלוגו מוגדל מתחת לכרטיס הביקור */
+        .brand-logo-img {
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             border: 3px solid #007bff;
         }
-        
+
         h1 { margin: 10px 0 5px 0; color: #222; }
         h2 { color: #007bff; margin-top: 25px; }
 
@@ -96,6 +94,7 @@
         .social-links {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 15px;
             margin: 20px 0;
             flex-wrap: wrap;
@@ -115,6 +114,14 @@
         .instagram-btn { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
         .tiktok-btn { background: #000000; }
         .whatsapp-btn { background: #25d366; }
+
+        /* חתימה קטנה בצד ה-TikTok */
+        .signature-inline-img {
+            height: 35px;
+            width: auto;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
 
         /* סקציית תגובות */
         .reviews-section {
@@ -199,25 +206,25 @@
 <body>
 
 <div class="container">
-    <!-- 1. הלוגו והחתימה הכי למעלה -->
     <div class="top-brand-bar">
-        <img src="1793908641410.jpg" alt="M.R לוגו" class="brand-logo-img">
-        <img src="IMG_20261021_205959.jpg" alt="Matan Richter Signature" class="signature-top-img">
-    </div>
+        <!-- 1. כרטיס ביקור מוגדל וברור בחלק העליון -->
+        <div class="business-card-section">
+            <img src="1793908727293.jpg" alt="M.R כרטיס ביקור" class="brand-character-img">
+        </div>
 
-    <!-- 2. מיד מתחת: כרטיס ביקור נקי עם הדמות בלבד -->
-    <div class="business-card-section">
-        <img src="1793908727293.jpg" alt="M.R דמות" class="brand-character-img">
+        <!-- 2. הלוגו המוגדל מופיע בהמשך בחלק העליון -->
+        <img src="1793908641410.jpg" alt="M.R לוגו" class="brand-logo-img">
     </div>
 
     <h1>M.R – הכול לבית שלך!</h1>
     <p>שירות מקיף, מקצועי ומהיר בכל מקום בישראל</p>
 
-    <!-- כפתורי תקשורת ורשתות חברתיות -->
+    <!-- כפתורי תקשורת ורשתות חברתיות עם חתימה מוקטנת בצד TikTok -->
     <div class="social-links">
         <a href="https://wa.me/972559423309?text=שלום%2C%20אשמח%20לקבל%20פרטים%20נוספים" class="social-btn whatsapp-btn">💬 WhatsApp · 055-9423309</a>
         <a href="https://www.instagram.com/m.r26420" target="_blank" class="social-btn instagram-btn">📸 Instagram @m.r26420</a>
         <a href="https://www.tiktok.com/@m.r26420" target="_blank" class="social-btn tiktok-btn">🎵 TikTok @m.r26420</a>
+        <img src="IMG_20261021_205959.jpg" alt="חתימה" class="signature-inline-img">
     </div>
 
     <h2>בחרו שירות</h2>
@@ -291,7 +298,6 @@
                 <textarea id="reviewText" rows="3" required placeholder="כתוב כאן את חוות דעתך..."></textarea>
             </div>
 
-            <!-- שדה להעלאת תמונת עבודה (משתמש ב-1793908867065.jpg כברירת מחדל או בהעלאת קובץ) -->
             <div class="form-group">
                 <label for="reviewImage">צרף תמונה להוכחת העבודה (אופציונלי):</label>
                 <input type="file" id="reviewImage" accept="image/*">
