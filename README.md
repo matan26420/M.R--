@@ -201,13 +201,13 @@
 <div class="container">
     <!-- 1. הלוגו והחתימה הכי למעלה -->
     <div class="top-brand-bar">
-        <img src="17939086541410.jpg" alt="M.R לוגו" class="brand-logo-img">
-        <img src="17939086727203.jpg" alt="Matan Richter Signature" class="signature-top-img">
+        <img src="1793908641410.jpg" alt="M.R לוגו" class="brand-logo-img">
+        <img src="IMG_20261021_205959.jpg" alt="Matan Richter Signature" class="signature-top-img">
     </div>
 
     <!-- 2. מיד מתחת: כרטיס ביקור נקי עם הדמות בלבד -->
     <div class="business-card-section">
-        <img src="1793908687055.jpg" alt="M.R דמות" class="brand-character-img">
+        <img src="1793908727293.jpg" alt="M.R דמות" class="brand-character-img">
     </div>
 
     <h1>M.R – הכול לבית שלך!</h1>
@@ -291,7 +291,7 @@
                 <textarea id="reviewText" rows="3" required placeholder="כתוב כאן את חוות דעתך..."></textarea>
             </div>
 
-            <!-- שדה להעלאת תמונת עבודה -->
+            <!-- שדה להעלאת תמונת עבודה (משתמש ב-1793908867065.jpg כברירת מחדל או בהעלאת קובץ) -->
             <div class="form-group">
                 <label for="reviewImage">צרף תמונה להוכחת העבודה (אופציונלי):</label>
                 <input type="file" id="reviewImage" accept="image/*">
