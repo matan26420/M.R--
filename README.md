@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M.R – הכול לבית שלך!</title>
+    <title>M.R. הכל לבית</title>
     
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
@@ -42,13 +42,13 @@
             margin-bottom: 30px;
         }
 
-        /* כרטיס הביקור מוגדל משמעותית לקריאות מקסימלית */
+        /* כרטיס הביקור מוגדל ומרובע ללא מסגרת כחולה */
         .business-card-section {
             background: #ffffff;
-            border: 3px solid #007bff;
-            padding: 25px;
+            padding: 15px;
             border-radius: 16px;
             width: 100%;
+            max-width: 450px;
             box-sizing: border-box;
             display: flex;
             justify-content: center;
@@ -57,7 +57,6 @@
         }
         .brand-character-img {
             width: 100%;
-            max-width: 400px;
             height: auto;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
@@ -65,14 +64,14 @@
 
         /* הלוגו מוגדל ללא מסגרת כחולה */
         .brand-logo-img {
-            width: 220px;
-            height: 220px;
+            width: 240px;
+            height: 240px;
             border-radius: 50%;
             object-fit: cover;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        h1 { margin: 10px 0 5px 0; color: #222; }
+        h1 { margin: 10px 0 5px 0; color: #222; font-size: 28px; }
         h2 { color: #007bff; margin-top: 25px; }
 
         .services-grid, .moves-grid {
@@ -128,14 +127,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             background: #f9f9f9;
-            padding: 10px 20px;
-            border-radius: 8px;
-            border: 1px solid #eee;
+            padding: 15px 25px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .signature-label {
+            font-size: 16px;
+            color: #444;
+            font-weight: bold;
         }
         .signature-inline-img {
-            height: 60px;
+            max-height: 100px;
             width: auto;
             object-fit: contain;
         }
@@ -231,19 +236,19 @@
 
 <div class="container">
     <div class="top-brand-bar">
-        <!-- כרטיס ביקור מוגדל וקריא בחלק העליון -->
+        <!-- כרטיס ביקור מוגדל ומרובע -->
         <div class="business-card-section">
             <img src="1793908727293.jpg" alt="M.R כרטיס ביקור" class="brand-character-img">
         </div>
 
-        <!-- הלוגו מוגדל ללא מסגרת -->
+        <!-- הלוגו מוגדל ללא מסגרת כחולה -->
         <img src="1793908641410.jpg" alt="M.R לוגו" class="brand-logo-img">
     </div>
 
-    <h1>M.R – הכול לבית שלך!</h1>
+    <h1>M.R. הכל לבית</h1>
     <p>שירות מקיף, מקצועי ומהיר בכל מקום בישראל</p>
 
-    <!-- כפתורי תקשורת וחתימה מוגדלת וברורה -->
+    <!-- כפתורי תקשורת וחתימה גדולה וברורה -->
     <div class="social-links">
         <div class="social-btns-row">
             <a href="https://wa.me/972559423309?text=שלום%2C%20אשמח%20לקבל%20פרטים%20נוספים" class="social-btn whatsapp-btn">💬 WhatsApp · 055-9423309</a>
@@ -251,7 +256,7 @@
             <a href="https://www.tiktok.com/@m.r26420" target="_blank" class="social-btn tiktok-btn">🎵 TikTok @m.r26420</a>
         </div>
         <div class="signature-container">
-            <span style="font-size: 12px; color: #666; font-weight: bold;">חתימת העסק:</span>
+            <span class="signature-label">חתימת העסק:</span>
             <img src="IMG_20261021_205959.jpg" alt="חתימה" class="signature-inline-img">
         </div>
     </div>
@@ -360,7 +365,7 @@
         </div>
     </div>
 
-    <footer>Matan Richter © M.R הכול לבית</footer>
+    <footer>Matan Richter © M.R הכל לבית</footer>
 </div>
 
 <script>
