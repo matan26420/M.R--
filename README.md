@@ -64,11 +64,11 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* הלוגו מוגדל ללא מסגרת כחולה */
+        /* הלוגו שונה למרובע, מוגדל וללא מסגרת כחולה */
         .brand-logo-img {
             width: 260px;
-            height: 240px;
-            border-radius: 50%;
+            height: 260px;
+            border-radius: 12px;
             object-fit: cover;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
@@ -246,7 +246,7 @@
             <img src="1793908727293.jpg" alt="M.R כרטיס ביקור" class="brand-character-img">
         </div>
 
-        <!-- הלוגו מוגדל ללא מסגרת כחולה -->
+        <!-- הלוגו מרובע, מוגדל וללא מסגרת כחולה -->
         <img src="1793908641410.jpg" alt="M.R לוגו" class="brand-logo-img">
     </div>
 
