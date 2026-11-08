@@ -374,7 +374,7 @@
 </div>
 
 <script>
-    const IMGBB_API_KEY = "65d23f576854b9d9eeda0a988f2b748b";
+    const IMGBB_API_KEY = "7b4b0bd1f4a6019c1bb0172dd143e46d";
 
     const firebaseConfig = {
         databaseURL: "https://mr-services26-default-rtdb.firebaseio.com"
@@ -513,14 +513,16 @@
                     body: formData
                 });
                 let result = await response.json();
+                
                 if (result && result.success) {
                     imageUrl = result.data.url;
                 } else {
-                    alert('שגיאה בהעלאת התמונה, התגובה תפורסם ללא תמונה.');
+                    console.error('ImgBB Error:', result);
+                    alert('שגיאה בהעלאת התמונה לשרת החיצוני. התגובה תפורסם ללא תמונה.');
                 }
             } catch (error) {
                 console.error('Error uploading image:', error);
-                alert('אירעה שגיאה בחיבור לשרת התמונות.');
+                alert('אירעה שגיאה בחיבור לשרת התמונות. ודא חיבור לאינטרנט ונסה שוב.');
             }
         }
 
@@ -550,7 +552,7 @@
             window.open(whatsappUrl, '_blank');
         } catch (error) {
             console.error('Error saving review:', error);
-            alert('שגיאה בשמירת התגובה. אנא נסה שוב.');
+            alert('שגיאה בשמירת התגובה בבסיס הנתונים. אנא נסה שוב.');
             submitBtn.disabled = false;
             submitBtn.innerHTML = 'פרסם תגובה באתר ושלח לוואטסאפ 🚀';
         }
