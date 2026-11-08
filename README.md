@@ -64,7 +64,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
-        /* הלוגו שונה למרובע, מוגדל וללא מסגרת כחולה */
+        /* הלוגו מרובע, מוגדל וללא מסגרת כחולה */
         .brand-logo-img {
             width: 260px;
             height: 260px;
@@ -374,7 +374,7 @@
 </div>
 
 <script>
-    const IMGBB_API_KEY = "5ee34ed3831b8891e8b5f0d06ecba391";
+    const IMGBB_API_KEY = "65d23f576854b9d9eeda0a988f2b748b";
 
     const firebaseConfig = {
         databaseURL: "https://mr-services26-default-rtdb.firebaseio.com"
