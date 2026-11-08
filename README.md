@@ -220,11 +220,17 @@
             color: #444;
             margin-bottom: 5px;
         }
-        .review-image {
-            max-width: 100%;
-            max-height: 300px;
-            border-radius: 6px;
+        .review-images-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+            gap: 8px;
             margin-top: 10px;
+        }
+        .review-image {
+            width: 100%;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 6px;
             display: block;
         }
         
@@ -338,8 +344,8 @@
             </div>
 
             <div class="form-group">
-                <label for="reviewImage">צרף תמונה להוכחת העבודה (אופציונלי):</label>
-                <input type="file" id="reviewImage" accept="image/*">
+                <label for="reviewImages">צרף תמונות להוכחת העבודה (עד 10 תמונות):</label>
+                <input type="file" id="reviewImages" accept="image/*" multiple>
             </div>
 
             <button type="submit" class="btn" id="submitBtn" style="background: #28a745; width: 100%; border: none; cursor: pointer; font-size: 16px;">פרסם תגובה באתר ושלח לוואטסאפ 🚀</button>
@@ -446,7 +452,12 @@
             let card = document.createElement('div');
             card.className = 'review-card';
             
-            let imageHTML = review.imageUrl ? `<img src="${review.imageUrl}" alt="תמונת עבודה" class="review-image">` : '';
+            let imagesHTML = '';
+            if (review.imageUrls && review.imageUrls.length > 0) {
+                imagesHTML = `<div class="review-images-grid">` + 
+                    review.imageUrls.map(url => `<img src="${url}" alt="תמונת עבודה" class="review-image">`).join('') + 
+                    `</div>`;
+            }
 
             card.innerHTML = `
                 <div class="review-header">
@@ -454,7 +465,7 @@
                     <span>${getStarsHTML(review.rating)}</span>
                 </div>
                 <p style="margin: 8px 0; color: #333; word-break: break-word;">${escapeHTML(review.text)}</p>
-                ${imageHTML}
+                ${imagesHTML}
                 <div style="font-size: 11px; color: #888; text-align: left; margin-top: 10px;">📅 ${escapeHTML(review.date || '')}</div>
             `;
             reviewsList.appendChild(card);
@@ -489,8 +500,8 @@
         let category = document.getElementById('reviewCategory').value;
         let rating = parseFloat(reviewRatingInput.value);
         let text = document.getElementById('reviewText').value.trim();
-        let imageInput = document.getElementById('reviewImage');
-        let imageFile = imageInput.files ? imageInput.files[0] : null;
+        let imageInput = document.getElementById('reviewImages');
+        let imageFiles = imageInput.files ? Array.from(imageInput.files) : [];
         let date = new Date().toLocaleDateString('he-IL');
 
         if (!name || !category || !text || isNaN(rating)) {
@@ -498,35 +509,40 @@
             return;
         }
 
+        if (imageFiles.length > 10) {
+            alert('ניתן להעלות עד 10 תמונות בלבד.');
+            return;
+        }
+
         submitBtn.disabled = true;
-        submitBtn.innerHTML = 'מעלה תמונה ושולח... ⏳';
+        submitBtn.innerHTML = 'מעלה תמונות ושולח... ⏳';
 
-        let imageUrl = '';
+        let imageUrls = [];
 
-        if (imageFile) {
-            try {
-                let formData = new FormData();
-                formData.append('image', imageFile);
+        if (imageFiles.length > 0) {
+            for (let i = 0; i < imageFiles.length; i++) {
+                try {
+                    let formData = new FormData();
+                    formData.append('image', imageFiles[i]);
 
-                let response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
-                    method: 'POST',
-                    body: formData
-                });
-                let result = await response.json();
-                
-                if (result && result.success) {
-                    imageUrl = result.data.url;
-                } else {
-                    console.error('ImgBB Error:', result);
-                    alert('שגיאה בהעלאת התמונה לשרת החיצוני. התגובה תפורסם ללא תמונה.');
+                    let response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    let result = await response.json();
+                    
+                    if (result && result.success) {
+                        imageUrls.push(result.data.url);
+                    } else {
+                        console.error('ImgBB Error for image ' + i, result);
+                    }
+                } catch (error) {
+                    console.error('Error uploading image ' + i, error);
                 }
-            } catch (error) {
-                console.error('Error uploading image:', error);
-                alert('אירעה שגיאה בחיבור לשרת התמונות. ודא חיבור לאינטרנט ונסה שוב.');
             }
         }
 
-        let newReview = { name, category, rating, text, date, imageUrl };
+        let newReview = { name, category, rating, text, date, imageUrls };
         
         try {
             let newRef = reviewsRef.push();
@@ -545,8 +561,14 @@
                                   `👤 *שם:* ${encodeURIComponent(name)}%0A` +
                                   `🏷️ *קטגוריה:* ${encodeURIComponent(category)}%0A` +
                                   `⭐ *דירוג:* ${rating} כוכבים%0A` +
-                                  `📝 *תוכן התגובה:* ${encodeURIComponent(text)}` +
-                                  (imageUrl ? `%0A🖼️ *תמונת העבודה:* ${imageUrl}` : '');
+                                  `📝 *תוכן התגובה:* ${encodeURIComponent(text)}`;
+            
+            if (imageUrls.length > 0) {
+                whatsappMessage += `%0A%0A🖼️ *תמונות העבודה:*`;
+                imageUrls.forEach((url, index) => {
+                    whatsappMessage += `%0A${index + 1}. ${url}`;
+                });
+            }
 
             let whatsappUrl = `https://wa.me/972559423309?text=${whatsappMessage}`;
             window.open(whatsappUrl, '_blank');
