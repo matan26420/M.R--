@@ -1,10 +1,44 @@
-<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>M.R. הכל לבית</title>
-    
+    <meta name="description" content="M.R. הכל לבית – אינסטלציה, חשמל, צבע, שיפוצים, הובלות וניקיון מקרית שמונה ועד באר שבע. Услуги по дому от Кирьят-Шмоны до Беэр-Шевы.">
+
+    <meta property="og:title" content="M.R. הכל לבית – שיפוצים, אינסטלציה, חשמל והובלות">
+    <meta property="og:description" content="שירות מקיף, מקצועי ומהיר מקרית שמונה ועד באר שבע">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://matan26420.github.io/M.R--/">
+    <meta property="og:image" content="https://matan26420.github.io/M.R--/1793908641410.jpg">
+    <link rel="canonical" href="https://matan26420.github.io/M.R--/">
+    <meta property="og:locale" content="he_IL">
+    <meta property="og:locale:alternate" content="ru_RU">
+    <meta property="og:site_name" content="M.R. הכל לבית">
+    <meta name="twitter:card" content="summary">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#007bff">
+
+    <!-- נתונים מובנים לגוגל -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "name": "M.R. הכל לבית",
+      "url": "https://matan26420.github.io/M.R--/",
+      "image": "https://matan26420.github.io/M.R--/1793908641410.jpg",
+      "alternateName": "M.R. Всё для дома",
+      "description": "אינסטלציה, חשמל, צבע, חידוש רהיטים, ניקיון, הריסות, שיפוצים, גבס והובלות מקרית שמונה ועד באר שבע",
+      "telephone": "+972559423309",
+      "areaServed": ["קריית שמונה", "באר שבע", "ישראל"],
+      "openingHoursSpecification": [
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"], "opens": "08:00", "closes": "20:00"},
+        {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:00", "closes": "14:00"}
+      ],
+      "hasMap": "https://maps.app.goo.gl/woXp3rvCSqteKPa16?g_st=awb",
+      "sameAs": ["https://www.instagram.com/m.r26420", "https://www.tiktok.com/@m.r26420", "https://www.b144.co.il/b144_sip/401D0D1A4370655D4011001240/"]
+    }
+    </script>
+
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -31,6 +65,14 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             backdrop-filter: blur(5px);
         }
+
+        /* החלפת שפה */
+        .lang-switch { display: flex; justify-content: center; gap: 8px; margin-bottom: 15px; direction: ltr; }
+        .lang-switch button {
+            border: 2px solid #007bff; background: #fff; color: #007bff; padding: 6px 18px;
+            border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 14px;
+        }
+        .lang-switch button.on { background: #007bff; color: #fff; }
         
         /* אזור כרטיס הביקור והלוגו בחלק העליון */
         .top-brand-bar {
@@ -67,7 +109,9 @@
         /* הלוגו מרובע, מוגדל וללא מסגרת כחולה */
         .brand-logo-img {
             width: 260px;
-            height: 260px;
+            max-width: 100%;
+            height: auto;
+            aspect-ratio: 1 / 1;
             border-radius: 12px;
             object-fit: cover;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -93,6 +137,21 @@
             transition: background 0.3s;
         }
         a.btn:hover { background: #0056b3; }
+
+        /* אזור פעילות ושעות */
+        .status { display: inline-block; padding: 6px 16px; border-radius: 20px; font-weight: bold; font-size: 14px; margin: 5px 0 10px; }
+        .status.open { background: #d4f5dd; color: #176b2c; }
+        .status.closed { background: #fde2e2; color: #a12727; }
+        .info-box { background: #f4f8ff; border-radius: 8px; padding: 12px 15px; line-height: 1.8; margin-bottom: 20px; }
+        .info-box .row { display: flex; justify-content: space-between; border-bottom: 1px dashed #ccd; padding: 3px 0; }
+        .info-box .row:last-child { border: 0; }
+
+        /* שאלות נפוצות */
+        .faq details { background: #fff; border: 1px solid #e3e3e3; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; text-align: right; }
+        html[dir="ltr"] .faq details { text-align: left; }
+        .faq summary { font-weight: bold; cursor: pointer; color: #222; }
+        .faq p, .faq ul { margin: 8px 0 0; color: #555; line-height: 1.7; }
+        .faq ul { padding-inline-start: 20px; }
 
         /* אזור קישורים רשתות חברתיות */
         .social-links {
@@ -159,6 +218,7 @@
             border-radius: 8px;
             text-align: right;
         }
+        html[dir="ltr"] .reviews-section, html[dir="ltr"] .form-group, html[dir="ltr"] .review-card, html[dir="ltr"] .filter-container { text-align: left; }
         .form-group {
             margin-bottom: 15px;
             text-align: right;
@@ -179,24 +239,46 @@
         
         .stars-container {
             display: flex;
-            flex-direction: row-reverse;
-            justify-content: flex-end;
-            gap: 8px;
-            font-size: 34px;
+            justify-content: flex-start;
+            gap: 6px;
+            font-size: 40px;
+            line-height: 1;
             padding: 5px 0;
-            unicode-bidi: bidi-override;
         }
         .star {
+            position: relative;
+            display: inline-block;
             color: #ddd;
             cursor: pointer;
-            padding: 0 4px;
-            display: inline-block;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-            transition: color 0.1s ease, transform 0.1s ease;
+            touch-action: manipulation;
+            transition: transform 0.1s ease;
         }
-        .star.active { color: #ffc107; }
-        .star:active { transform: scale(1.2); }
+        .star .fill {
+            position: absolute;
+            top: 0;
+            inset-inline-start: 0;
+            width: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #ffc107;
+            pointer-events: none;
+        }
+        .star:active { transform: scale(1.12); }
+        .star-hint { font-size: 12px; color: #888; margin-top: 2px; }
+        .review-images-grid a { display: block; }
+        .stars-container:focus-visible, a:focus-visible, button:focus-visible, summary:focus-visible,
+        select:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #ffc107; outline-offset: 2px; }
+        #waFallback { margin-top: 12px; text-align: center; font-weight: bold; color: #176b2c; }
+        #waFallback a.btn { background: #25d366; margin-top: 8px; }
+
+        /* כפתורי גוגל ו-144 */
+        .other-reviews { background: #f4f8ff; border-radius: 8px; padding: 14px; margin-top: 20px; text-align: center; }
+        .other-reviews p { margin: 0 0 10px; font-weight: bold; color: #444; }
+        .other-reviews .social-btns-row { gap: 10px; }
+        .google-btn { background: #4285f4; }
+        .b144-btn { background: #d32f2f; }
 
         .reviews-list {
             margin-top: 20px;
@@ -246,6 +328,13 @@
 <body>
 
 <div class="container">
+
+    <!-- החלפת שפה -->
+    <div class="lang-switch">
+        <button type="button" id="btn-he" class="on" onclick="setLang('he')">עברית</button>
+        <button type="button" id="btn-ru" onclick="setLang('ru')">Русский</button>
+    </div>
+
     <div class="top-brand-bar">
         <!-- כרטיס ביקור מוגדל ומרובע -->
         <div class="business-card-section">
@@ -257,7 +346,8 @@
     </div>
 
     <h1>M.R. הכל לבית</h1>
-    <p>שירות מקיף, מקצועי ומהיר בכל מקום בישראל</p>
+    <p data-ru="Комплексный, профессиональный и быстрый сервис по всему Израилю">שירות מקיף, מקצועי ומהיר בכל מקום בישראל</p>
+    <div class="status" id="status"></div>
 
     <!-- כפתורי תקשורת וחתימה גדולה וברורה -->
     <div class="social-links">
@@ -267,112 +357,156 @@
             <a href="https://www.tiktok.com/@m.r26420" target="_blank" class="social-btn tiktok-btn">🎵 TikTok @m.r26420</a>
         </div>
         <div class="signature-container">
-            <span class="signature-label">חתימת העסק:</span>
+            <span class="signature-label" data-ru="Подпись компании:">חתימת העסק:</span>
             <img src="IMG_20261021_205959.jpg" alt="חתימה" class="signature-inline-img">
         </div>
     </div>
 
-    <h2>בחרו שירות</h2>
+    <h2 data-ru="Выберите услугу">בחרו שירות</h2>
     <div class="services-grid">
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודת%20אינסטלציה.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🚰 אינסטלציה</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודת%20צבע.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🎨 צבע</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בחידוש%20רהיטים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🛋️ חידוש רהיטים</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בניקיון.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🧹 ניקיון</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהריסות.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🧱 הריסות</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בשיפוצים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">📐 שיפוצים</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודות%20גבס.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🪚 עבודות גבס</a>
+        <a class="btn" data-ru="🚰 Сантехника" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודת%20אינסטלציה.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🚰 אינסטלציה</a>
+        <a class="btn" data-ru="⚡ Электрика" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודות%20חשמל.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">⚡ חשמל</a>
+        <a class="btn" data-ru="🎨 Покраска" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודת%20צבע.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🎨 צבע</a>
+        <a class="btn" data-ru="🛋️ Реставрация мебели" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בחידוש%20רהיטים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🛋️ חידוש רהיטים</a>
+        <a class="btn" data-ru="🧹 Уборка" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בניקיון.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🧹 ניקיון</a>
+        <a class="btn" data-ru="🧱 Демонтаж" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהריסות.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🧱 הריסות</a>
+        <a class="btn" data-ru="📐 Ремонт" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בשיפוצים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">📐 שיפוצים</a>
+        <a class="btn" data-ru="🪚 Гипсокартон" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בעבודות%20גבס.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🪚 עבודות גבס</a>
     </div>
 
-    <h2>🚚 הובלות</h2>
+    <h2 data-ru="🚚 Перевозки">🚚 הובלות</h2>
     <div class="moves-grid">
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20גדולות.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🚛 הובלות גדולות</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20קטנות.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">📦 הובלות קטנות</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלת%20רהיט%20אחד.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🛋️ הובלת רהיט אחד</a>
-        <a class="btn" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20משרדים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🏢 הובלות משרדים</a>
+        <a class="btn" data-ru="🚛 Большие перевозки" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20גדולות.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🚛 הובלות גדולות</a>
+        <a class="btn" data-ru="📦 Малые перевозки" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20קטנות.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">📦 הובלות קטנות</a>
+        <a class="btn" data-ru="🛋️ Перевозка одного предмета мебели" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלת%20רהיט%20אחד.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🛋️ הובלת רהיט אחד</a>
+        <a class="btn" data-ru="🏢 Перевозки офисов" href="https://wa.me/972559423309?text=שלום%2C%20אני%20מעוניין%20בהובלות%20משרדים.%20נא%20להביא%20לי%20בבקשה%20הצעת%20מחיר%2C%20מצורפות%20תמונות%20או%20וידאו%20או%20גם%20וגם%3A">🏢 הובלות משרדים</a>
+    </div>
+
+    <!-- אזור פעילות ושעות -->
+    <h2 data-ru="📍 Район работы">📍 אזור פעילות</h2>
+    <div class="info-box" data-ru="Работаем <b>от Кирьят-Шмоны до Беэр-Шевы</b>">אנחנו פעילים <b>מקרית שמונה ועד באר שבע</b></div>
+
+    <h2 data-ru="🕒 Часы работы">🕒 שעות פעילות</h2>
+    <div class="info-box">
+        <div class="row"><span data-ru="Воскресенье – четверг">ראשון – חמישי</span><b>08:00 – 20:00</b></div>
+        <div class="row"><span data-ru="Пятница">שישי</span><b>09:00 – 14:00</b></div>
+         <div class="row"><span data-ru="Пятница">שישי</span><b>09:00 – 14:00</b></div>
+        <div class="row"><span data-ru="Суббота">שבת</span><b style="color:#a12727" data-ru="Только экстренные случаи">מקרה חירום בלבד</b></div>
+    </div>
+
+    <!-- שאלות נפוצות -->
+    <h2 data-ru="❓ Частые вопросы">❓ שאלות נפוצות</h2>
+    <div class="faq">
+        <details>
+            <summary data-ru="Как получить расчёт стоимости и что отправить?">איך מקבלים הצעת מחיר ומה כדאי לשלוח?</summary>
+            <div data-ru="<p>Нажмите на кнопку нужной услуги – откроется WhatsApp с готовым сообщением. Отправьте:</p><ul><li>Короткое описание работы</li><li>Фото или видео</li><li>Город и адрес</li><li>Желаемую дату и срочность</li></ul><p>Для перевозок также: адрес загрузки и выгрузки, этаж и лифт, список вещей.</p>">
+                <p>לוחצים על כפתור השירות הרצוי ונפתח וואטסאפ עם הודעה מוכנה. כדאי לשלוח:</p>
+                <ul>
+                    <li>תיאור קצר של העבודה</li>
+                    <li>תמונות או וידאו</li>
+                    <li>עיר וכתובת</li>
+                    <li>תאריך מבוקש והאם זה דחוף</li>
+                </ul>
+                <p>להובלות גם: כתובת איסוף ויעד, קומה ומעלית, ורשימת פריטים.</p>
+            </div>
+        </details>
+        <details>
+            <summary data-ru="В каких районах и в какие часы вы работаете?">באילו אזורים ובאילו שעות אתם עובדים?</summary>
+            <p data-ru="От Кирьят-Шмоны до Беэр-Шевы. Вс–чт 8:00–20:00, пт 9:00–14:00.">מקרית שמונה ועד באר שבע. ראשון–חמישי 8:00–20:00, שישי 9:00–14:00.</p>
+        </details>
+        <details>
+            <summary data-ru="Вы работаете в субботу и в срочных случаях?">האם עובדים בשבת ובמקרים דחופים?</summary>
+            <p data-ru="В субботу – только экстренные случаи. Напишите в WhatsApp и укажите, что это срочно.">בשבת אנחנו עובדים במקרי חירום בלבד. שלחו הודעה בוואטסאפ וכתבו שזה דחוף.</p>
+        </details>
     </div>
 
     <!-- אזור תגובות -->
     <div class="reviews-section">
-        <h2>⭐ תגובות לקוחות ודירוגים</h2>
-        <h3>✍️ השאר תגובה ודרג אותנו:</h3>
+        <h2 data-ru="⭐ Отзывы клиентов и оценки">⭐ תגובות לקוחות ודירוגים</h2>
+        <h3 data-ru="✍️ Оставьте отзыв и оцените нас:">✍️ השאר תגובה ודרג אותנו:</h3>
         
         <form id="reviewForm">
             <div class="form-group">
-                <label for="reviewerName">שם מלא:</label>
-                <input type="text" id="reviewerName" required placeholder="הכנס את שמך">
+                <label for="reviewerName" data-ru="Полное имя:">שם מלא:</label>
+                <input type="text" id="reviewerName" required maxlength="50" placeholder="הכנס את שמך" data-ru-ph="Введите ваше имя">
             </div>
 
             <div class="form-group">
-                <label for="reviewCategory">בחר קטגוריה:</label>
+                <label for="reviewCategory" data-ru="Выберите категорию:">בחר קטגוריה:</label>
                 <select id="reviewCategory" required>
-                    <option value="">בחר שירות...</option>
-                    <option value="אינסטלציה">אינסטלציה</option>
-                    <option value="צבע">צבע</option>
-                    <option value="חידוש רהיטים">חידוש רהיטים</option>
-                    <option value="ניקיון">ניקיון</option>
-                    <option value="הריסות">הריסות</option>
-                    <option value="שיפוצים">שיפוצים</option>
-                    <option value="עבודות גבס">עבודות גבס</option>
-                    <option value="הובלות גדולות">הובלות גדולות</option>
-                    <option value="הובלות קטנות">הובלות קטנות</option>
-                    <option value="הובלת רהיט אחד">הובלת רהיט אחד</option>
-                    <option value="הובלות משרדים">הובלות משרדים</option>
+                    <option value="" data-ru="Выберите услугу...">בחר שירות...</option>
+                    <option value="אינסטלציה" data-ru="Сантехника">אינסטלציה</option>
+                    <option value="חשמל" data-ru="Электрика">חשמל</option>
+                    <option value="צבע" data-ru="Покраска">צבע</option>
+                    <option value="חידוש רהיטים" data-ru="Реставрация мебели">חידוש רהיטים</option>
+                    <option value="ניקיון" data-ru="Уборка">ניקיון</option>
+                    <option value="הריסות" data-ru="Демонтаж">הריסות</option>
+                    <option value="שיפוצים" data-ru="Ремонт">שיפוצים</option>
+                    <option value="עבודות גבס" data-ru="Гипсокартон">עבודות גבס</option>
+                    <option value="הובלות גדולות" data-ru="Большие перевозки">הובלות גדולות</option>
+                    <option value="הובלות קטנות" data-ru="Малые перевозки">הובלות קטנות</option>
+                    <option value="הובלת רהיט אחד" data-ru="Перевозка одного предмета мебели">הובלת רהיט אחד</option>
+                    <option value="הובלות משרדים" data-ru="Перевозки офисов">הובלות משרדים</option>
                 </select>
             </div>
 
             <div class="form-group">
-                <label>דירוג כוכבים (לחץ על כוכב לבחירה):</label>
-                <div class="stars-container" id="starPicker">
-                    <span class="star" data-value="5">★</span>
-                    <span class="star" data-value="4.5">★</span>
-                    <span class="star" data-value="4">★</span>
-                    <span class="star" data-value="3.5">★</span>
-                    <span class="star" data-value="3">★</span>
-                    <span class="star" data-value="2.5">★</span>
-                    <span class="star" data-value="2">★</span>
-                    <span class="star" data-value="1.5">★</span>
-                    <span class="star" data-value="1">★</span>
-                    <span class="star" data-value="0.5">★</span>
+                <label data-ru="Оценка звёздами (нажмите на звезду):">דירוג כוכבים (לחץ על כוכב לבחירה):</label>
+                <div class="stars-container" id="starPicker" tabindex="0" role="slider" aria-label="דירוג" aria-valuemin="0.5" aria-valuemax="5" aria-valuenow="5">
+                    <span class="star">★<span class="fill">★</span></span>
+                    <span class="star">★<span class="fill">★</span></span>
+                    <span class="star">★<span class="fill">★</span></span>
+                    <span class="star">★<span class="fill">★</span></span>
+                    <span class="star">★<span class="fill">★</span></span>
                 </div>
-                <div style="margin-top: 5px; font-weight: bold; color: #007bff;" id="ratingText">דירוג נבחר: 5 מתוך 5 כוכבים</div>
+                <div class="star-hint" data-ru="Нажмите на левую или правую половину звезды, чтобы выбрать половинку">לחיצה על חצי כוכב בוחרת חצי דירוג</div>
+                <div style="margin-top: 5px; font-weight: bold; color: #007bff;" id="ratingText"></div>
                 <input type="hidden" id="reviewRating" value="5" required>
             </div>
 
             <div class="form-group">
-                <label for="reviewText">התגובה שלך:</label>
-                <textarea id="reviewText" rows="3" required placeholder="כתוב כאן את חוות דעתך..."></textarea>
+                <label for="reviewText" data-ru="Ваш отзыв:">התגובה שלך:</label>
+                <textarea id="reviewText" rows="3" required maxlength="1000" placeholder="כתוב כאן את חוות דעתך..." data-ru-ph="Напишите здесь свой отзыв..."></textarea>
             </div>
 
             <div class="form-group">
-                <label for="reviewImages">צרף תמונות להוכחת העבודה (עד 10 תמונות):</label>
+                <label for="reviewImages" data-ru="Прикрепите фото работы (до 10 фото):">צרף תמונות להוכחת העבודה (עד 10 תמונות):</label>
                 <input type="file" id="reviewImages" accept="image/*" multiple>
             </div>
 
-            <button type="submit" class="btn" id="submitBtn" style="background: #28a745; width: 100%; border: none; cursor: pointer; font-size: 16px;">פרסם תגובה באתר ושלח לוואטסאפ 🚀</button>
+            <button type="submit" class="btn" id="submitBtn" style="background: #28a745; width: 100%; border: none; cursor: pointer; font-size: 16px;"></button>
+            <div id="waFallback"></div>
         </form>
+
+        <div class="other-reviews">
+            <p data-ru="Хотите оставить отзыв и в других местах?">רוצים לכתוב עלינו גם בגוגל או ב-144?</p>
+            <div class="social-btns-row">
+                <a class="social-btn google-btn" href="https://maps.app.goo.gl/woXp3rvCSqteKPa16?g_st=awb" target="_blank" rel="noopener" data-ru="⭐ Отзыв в Google">⭐ ביקורת בגוגל</a>
+                <a class="social-btn b144-btn" href="https://www.b144.co.il/b144_sip/401D0D1A4370655D4011001240/" target="_blank" rel="noopener" data-ru="📒 Отзыв в 144">📒 ביקורת ב-144</a>
+            </div>
+        </div>
 
         <div style="margin-top: 35px;">
             <div class="filter-container" style="text-align: right; margin-bottom: 15px;">
-                <label for="filterCategory" style="font-weight: bold; margin-left: 10px;">סנן תגובות לפי קטגוריה:</label>
+                <label for="filterCategory" style="font-weight: bold; margin-inline-end: 10px;" data-ru="Фильтр отзывов по категории:">סנן תגובות לפי קטגוריה:</label>
                 <select id="filterCategory" onchange="renderReviews()" style="width: 200px; padding: 5px;">
-                    <option value="all">הצג הכל</option>
-                    <option value="אינסטלציה">אינסטלציה</option>
-                    <option value="צבע">צבע</option>
-                    <option value="חידוש רהיטים">חידוש רהיטים</option>
-                    <option value="ניקיון">ניקיון</option>
-                    <option value="הריסות">הריסות</option>
-                    <option value="שיפוצים">שיפוצים</option>
-                    <option value="עבודות גבס">עבודות גבס</option>
-                    <option value="הובלות גדולות">הובלות גדולות</option>
-                    <option value="הובלות קטנות">הובלות קטנות</option>
-                    <option value="הובלת רהיט אחד">הובלת רהיט אחד</option>
-                    <option value="הובלות משרדים">הובלות משרדים</option>
+                    <option value="all" data-ru="Показать все">הצג הכל</option>
+                    <option value="אינסטלציה" data-ru="Сантехника">אינסטלציה</option>
+                    <option value="חשמל" data-ru="Электрика">חשמל</option>
+                    <option value="צבע" data-ru="Покраска">צבע</option>
+                    <option value="חידוש רהיטים" data-ru="Реставрация мебели">חידוש רהיטים</option>
+                    <option value="ניקיון" data-ru="Уборка">ניקיון</option>
+                    <option value="הריסות" data-ru="Демонтаж">הריסות</option>
+                    <option value="שיפוצים" data-ru="Ремонт">שיפוצים</option>
+                    <option value="עבודות גבס" data-ru="Гипсокартон">עבודות גבס</option>
+                    <option value="הובלות גדולות" data-ru="Большие перевозки">הובלות גדולות</option>
+                    <option value="הובלות קטנות" data-ru="Малые перевозки">הובלות קטנות</option>
+                    <option value="הובלת רהיט אחד" data-ru="Перевозка одного предмета мебели">הובלת רהיט אחד</option>
+                    <option value="הובלות משרדים" data-ru="Перевозки офисов">הובלות משרדים</option>
                 </select>
             </div>
 
-            <div class="reviews-list" id="reviewsList">
-                <p style="color: #777;">טוען תגובות...</p>
-            </div>
+            <div class="reviews-list" id="reviewsList"></div>
         </div>
     </div>
 
@@ -392,6 +526,9 @@
     const reviewsRef = database.ref('reviews');
 
     let allReviews = [];
+    let reviewsLoaded = false, reviewsError = false;
+    let lang = 'he';
+    const waFallback = document.getElementById('waFallback');
 
     const reviewForm = document.getElementById('reviewForm');
     const reviewsList = document.getElementById('reviewsList');
@@ -401,28 +538,139 @@
     const stars = document.querySelectorAll('#starPicker .star');
     const submitBtn = document.getElementById('submitBtn');
 
-    // ניהול בחירת כוכבים אמין וישיר לכל מסך (מחשב ומובייל)
-    stars.forEach(star => {
-        const handleStarSelect = (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            let val = parseFloat(star.getAttribute('data-value'));
-            reviewRatingInput.value = val;
-            ratingText.innerHTML = `דירוג נבחר: ${val} מתוך 5 כוכבים`;
+    // ===== טקסטים דינמיים בשתי שפות =====
+    const M = {
+        he: {
+            rating: v => `דירוג נבחר: ${v} מתוך 5 כוכבים`,
+            send: 'פרסם תגובה באתר ושלח לוואטסאפ 🚀',
+            sending: 'מעלה תמונות ושולח... ⏳',
+            loading: 'טוען תגובות...',
+            empty: 'אין עדיין תגובות להצגה בקטגוריה זו.',
+            fill: 'אנא מלא את כל השדות בטופס בצורה תקינה.',
+            max: 'ניתן להעלות עד 10 תמונות בלבד.',
+            err: 'שגיאה בשמירת התגובה בבסיס הנתונים. אנא נסה שוב.',
+            open: '🟢 פתוחים עכשיו', closed: '🔴 סגור כרגע – שלחו הודעה ונחזור אליכם', sat: '🟠 שבת – מקרי חירום בלבד',
+            alt: 'תמונת עבודה',
+            loadErr: 'לא הצלחנו לטעון את התגובות כרגע. נסו לרענן את הדף.',
+            upFail: n => `${n} תמונות לא הועלו. התגובה תישמר בלי התמונות האלה.`,
+            saved: '✅ התגובה נשמרה והופיעה באתר. אם וואטסאפ לא נפתח, לחצו על הכפתור:',
+            waSend: '💬 שלחו לנו בוואטסאפ'
+        },
+        ru: {
+            rating: v => `Выбранная оценка: ${v} из 5 звёзд`,
+            send: 'Опубликовать отзыв и отправить в WhatsApp 🚀',
+            sending: 'Загрузка фото и отправка... ⏳',
+            loading: 'Загрузка отзывов...',
+            empty: 'В этой категории пока нет отзывов.',
+            fill: 'Пожалуйста, заполните все поля формы.',
+            max: 'Можно загрузить не более 10 фото.',
+            err: 'Ошибка сохранения отзыва. Попробуйте ещё раз.',
+            open: '🟢 Сейчас работаем', closed: '🔴 Сейчас закрыто – напишите, и мы свяжемся с вами', sat: '🟠 Суббота – только экстренные случаи',
+            alt: 'Фото работы',
+            loadErr: 'Не удалось загрузить отзывы. Обновите страницу.',
+            upFail: n => `Не удалось загрузить фото: ${n}. Отзыв будет сохранён без них.`,
+            saved: '✅ Отзыв сохранён и появился на сайте. Если WhatsApp не открылся, нажмите кнопку:',
+            waSend: '💬 Отправить нам в WhatsApp'
+        }
+    };
 
-            stars.forEach(s => {
-                let sVal = parseFloat(s.getAttribute('data-value'));
-                if (sVal <= val) {
-                    s.classList.add('active');
-                } else {
-                    s.classList.remove('active');
-                }
-            });
-        };
+    // ===== החלפת שפה (עברית ↔ רוסית) =====
+    function setLang(l) {
+        lang = l;
+        try { localStorage.setItem('lang', l); } catch (e) {}
+        document.documentElement.lang = l;
+        document.documentElement.dir = (l === 'ru') ? 'ltr' : 'rtl';
+        document.getElementById('btn-he').classList.toggle('on', l === 'he');
+        document.getElementById('btn-ru').classList.toggle('on', l === 'ru');
 
-        star.addEventListener('click', handleStarSelect);
-        star.addEventListener('touchstart', handleStarSelect);
+        document.querySelectorAll('[data-ru]').forEach(el => {
+            if (el.dataset.he === undefined) el.dataset.he = el.innerHTML;
+            el.innerHTML = (l === 'ru') ? el.dataset.ru : el.dataset.he;
+        });
+        document.querySelectorAll('[data-ru-ph]').forEach(el => {
+            if (el.dataset.hePh === undefined) el.dataset.hePh = el.placeholder;
+            el.placeholder = (l === 'ru') ? el.dataset.ruPh : el.dataset.hePh;
+        });
+        document.title = (l === 'ru') ? 'M.R. Всё для дома' : 'M.R. הכל לבית';
+
+        ratingText.innerHTML = M[l].rating(reviewRatingInput.value);
+        if (!submitBtn.disabled) submitBtn.innerHTML = M[l].send;
+        updateStatus();
+        renderReviews();
+    }
+
+    // תרגום שם קטגוריה לתצוגה בכרטיס תגובה
+    function catLabel(cat) {
+        if (lang !== 'ru') return cat;
+        const opt = Array.from(document.getElementById('reviewCategory').options).find(o => o.value === cat);
+        return opt ? opt.dataset.ru : cat;
+    
+
+    
+    // 
+    ===== פתוח / סגור לפי שעון ישראל =====
+    function updateStatus() {
+        const p = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Jerusalem', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
+        const get = t => p.find(x => x.type === t).value;
+        const day = get('weekday'), mins = (parseInt(get('hour')) % 24) * 60 + parseInt(get('minute'));
+        let state = 'closed';
+        if (['Sun','Mon','Tue','Wed','Thu'].includes(day) && mins >= 480 && mins < 1200) state = 'open';
+        else if (day === 'Fri' && mins >= 540 && mins < 840) state = 'open';
+        else if (day === 'Sat') state = 'sat';
+        const el = document.getElementById('status');
+        el.textContent = M[lang][state];
+        el.className = 'status ' + (state === 'open' ? 'open' : 'closed');
+    }
+
+    // בחירת דירוג: 5 כוכבים, אפשר לבחור גם חצי כוכב (לחיצה על חצי הכוכב)
+    function paintStars(val) {
+        reviewRatingInput.value = val;
+        document.getElementById('starPicker').setAttribute('aria-valuenow', val);
+        ratingText.innerHTML = M[lang].rating(val);
+        stars.forEach((s, i) => {
+            const part = Math.max(0, Math.min(1, val - i));
+            s.querySelector('.fill').style.width = (part * 100) + '%';
+        });
+    }
+
+    stars.forEach((star, i) => {
+        star.addEventListener('click', (e) => {
+            const r = star.getBoundingClientRect();
+            const rtl = document.documentElement.dir === 'rtl';
+            const frac = rtl ? (r.right - e.clientX) / r.width : (e.clientX - r.left) / r.width;
+            paintStars(i + (frac <= 0.5 ? 0.5 : 1));
+        });
     });
+
+    document.getElementById('starPicker').addEventListener('keydown', (e) => {
+        const rtl = document.documentElement.dir === 'rtl';
+        const up = e.key === 'ArrowUp' || e.key === (rtl ? 'ArrowLeft' : 'ArrowRight');
+        const down = e.key === 'ArrowDown' || e.key === (rtl ? 'ArrowRight' : 'ArrowLeft');
+        if (!up && !down) return;
+        e.preventDefault();
+        paintStars(Math.max(0.5, Math.min(5, parseFloat(reviewRatingInput.value) + (up ? 0.5 : -0.5))));
+    });
+
+    // הקטנת תמונות לפני העלאה (מהיר יותר בנייד); אם נכשל – מעלים את המקור
+    function shrinkImage(file, max = 1600) {
+        return new Promise(resolve => {
+            if (!file.type || !file.type.startsWith('image/') || file.type === 'image/gif') return resolve(file);
+            const img = new Image();
+            const url = URL.createObjectURL(file);
+            img.onload = () => {
+                URL.revokeObjectURL(url);
+                const k = Math.min(1, max / Math.max(img.width, img.height));
+                if (k === 1 && file.size < 1.5 * 1024 * 1024) return resolve(file);
+                const c = document.createElement('canvas');
+                c.width = Math.round(img.width * k);
+                c.height = Math.round(img.height * k);
+                c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+                c.toBlob(b => resolve(b || file), 'image/jpeg', 0.85);
+            };
+            img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
+            img.src = url;
+        });
+    }
 
     function getStarsHTML(rating) {
         let fulls = Math.floor(rating);
@@ -435,6 +683,14 @@
 
     function renderReviews() {
         reviewsList.innerHTML = '';
+        if (reviewsError) {
+            reviewsList.innerHTML = `<p style="color: #a12727; text-align: center; padding: 10px;">${M[lang].loadErr}</p>`;
+            return;
+        }
+        if (!reviewsLoaded) {
+            reviewsList.innerHTML = `<p style="color: #777; text-align: center; padding: 10px;">${M[lang].loading}</p>`;
+            return;
+        }
         let selectedFilter = filterCategory.value;
 
         let filteredReviews = allReviews;
@@ -443,7 +699,7 @@
         }
 
         if (filteredReviews.length === 0) {
-            reviewsList.innerHTML = '<p style="color: #777; text-align: center; padding: 10px;">אין עדיין תגובות להצגה בקטגוריה זו.</p>';
+            reviewsList.innerHTML = `<p style="color: #777; text-align: center; padding: 10px;">${M[lang].empty}</p>`;
             return;
         }
 
@@ -455,13 +711,13 @@
             let imagesHTML = '';
             if (review.imageUrls && review.imageUrls.length > 0) {
                 imagesHTML = `<div class="review-images-grid">` + 
-                    review.imageUrls.map(url => `<img src="${url}" alt="תמונת עבודה" class="review-image">`).join('') + 
+                    review.imageUrls.filter(u => /^https:\/\//.test(u)).map(url => `<a href="${escapeHTML(url)}" target="_blank" rel="noopener"><img src="${escapeHTML(url)}" alt="${M[lang].alt}" class="review-image" loading="lazy"></a>`).join('') + 
                     `</div>`;
             }
 
             card.innerHTML = `
                 <div class="review-header">
-                    <span>👤 ${escapeHTML(review.name)} <span style="color: #007bff; font-weight: normal;">(${escapeHTML(review.category)})</span></span>
+                    <span>👤 ${escapeHTML(review.name)} <span style="color: #007bff; font-weight: normal;">(${escapeHTML(catLabel(review.category))})</span></span>
                     <span>${getStarsHTML(review.rating)}</span>
                 </div>
                 <p style="margin: 8px 0; color: #333; word-break: break-word;">${escapeHTML(review.text)}</p>
@@ -474,7 +730,7 @@
 
     function escapeHTML(str) {
         if (!str) return '';
-        return str.replace(/[&<>'"]/g, 
+        return String(str).replace(/[&<>'"]/g, 
             tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
         );
     }
@@ -482,6 +738,8 @@
     // טעינת תגובות בזמן אמת עבור כל המשתמשים
     reviewsRef.on('value', (snapshot) => {
         const data = snapshot.val();
+        reviewsLoaded = true;
+        reviewsError = false;
         allReviews = [];
         if (data) {
             Object.keys(data).forEach(key => {
@@ -490,6 +748,10 @@
                 }
             });
         }
+        renderReviews();
+    }, (error) => {
+        console.error('Firebase read error:', error);
+        reviewsError = true;
         renderReviews();
     });
 
@@ -505,42 +767,46 @@
         let date = new Date().toLocaleDateString('he-IL');
 
         if (!name || !category || !text || isNaN(rating)) {
-            alert('אנא מלא את כל השדות בטופס בצורה תקינה.');
+            alert(M[lang].fill);
             return;
         }
 
         if (imageFiles.length > 10) {
-            alert('ניתן להעלות עד 10 תמונות בלבד.');
+            alert(M[lang].max);
             return;
         }
 
         submitBtn.disabled = true;
-        submitBtn.innerHTML = 'מעלה תמונות ושולח... ⏳';
+        submitBtn.innerHTML = M[lang].sending;
+        waFallback.innerHTML = '';
 
         let imageUrls = [];
+        let failedUploads = 0;
 
-        if (imageFiles.length > 0) {
-            for (let i = 0; i < imageFiles.length; i++) {
-                try {
-                    let formData = new FormData();
-                    formData.append('image', imageFiles[i]);
+        for (let i = 0; i < imageFiles.length; i++) {
+            try {
+                let blob = await shrinkImage(imageFiles[i]);
+                let formData = new FormData();
+                formData.append('image', blob, blob.name || 'photo.jpg');
 
-                    let response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
-                        method: 'POST',
-                        body: formData
-                    });
-                    let result = await response.json();
-                    
-                    if (result && result.success) {
-                        imageUrls.push(result.data.url);
-                    } else {
-                        console.error('ImgBB Error for image ' + i, result);
-                    }
-                } catch (error) {
-                    console.error('Error uploading image ' + i, error);
+                let response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                    method: 'POST',
+                    body: formData
+                });
+                let result = await response.json();
+
+                if (result && result.success) {
+                    imageUrls.push(result.data.url);
+                } else {
+                    failedUploads++;
+                    console.error('ImgBB Error for image ' + i, result);
                 }
+            } catch (error) {
+                failedUploads++;
+                console.error('Error uploading image ' + i, error);
             }
         }
+        if (failedUploads > 0) alert(M[lang].upFail(failedUploads));
 
         let newReview = { name, category, rating, text, date, imageUrls };
         
@@ -549,14 +815,14 @@
             await newRef.set(newReview);
 
             submitBtn.disabled = false;
-            submitBtn.innerHTML = 'פרסם תגובה באתר ושלח לוואטסאפ 🚀';
+            submitBtn.innerHTML = M[lang].send;
 
             reviewForm.reset();
             reviewRatingInput.value = '5';
-            ratingText.innerHTML = 'דירוג נבחר: 5 מתוך 5 כוכבים';
-            stars.forEach(s => s.classList.add('active'));
+            paintStars(5);
             filterCategory.value = 'all';
 
+            // ההודעה לוואטסאפ נשארת בעברית כדי שתקרא אותה בקלות
             let whatsappMessage = `*💬 תגובה חדשה התקבלה באתר!*%0A%0A` +
                                   `👤 *שם:* ${encodeURIComponent(name)}%0A` +
                                   `🏷️ *קטגוריה:* ${encodeURIComponent(category)}%0A` +
@@ -572,15 +838,22 @@
 
             let whatsappUrl = `https://wa.me/972559423309?text=${whatsappMessage}`;
             window.open(whatsappUrl, '_blank');
+            // אם הדפדפן חסם את החלון (קורה בנייד אחרי העלאת תמונות) – כפתור ידני
+            waFallback.innerHTML = `<div>${M[lang].saved}</div><a class="btn" href="${whatsappUrl}" target="_blank" rel="noopener">${M[lang].waSend}</a>`;
         } catch (error) {
             console.error('Error saving review:', error);
-            alert('שגיאה בשמירת התגובה בבסיס הנתונים. אנא נסה שוב.');
+            alert(M[lang].err);
             submitBtn.disabled = false;
-            submitBtn.innerHTML = 'פרסם תגובה באתר ושלח לוואטסאפ 🚀';
+            submitBtn.innerHTML = M[lang].send;
         }
     });
 
-    renderReviews();
+    // אתחול: דירוג ברירת מחדל 5 כוכבים, ושפה שמורה
+    paintStars(5);
+    let savedLang = 'he';
+    try { savedLang = localStorage.getItem('lang') || 'he'; } catch (e) {}
+    setLang(savedLang);
+    setInterval(updateStatus, 60000);
 </script>
 
 </body>
