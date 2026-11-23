@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -390,9 +391,9 @@
     <div class="info-box">
         <div class="row"><span data-ru="Воскресенье – четверг">ראשון – חמישי</span><b>08:00 – 20:00</b></div>
         <div class="row"><span data-ru="Пятница">שישי</span><b>09:00 – 14:00</b></div>
-         <div class="row"><span data-ru="Пятница">שישי</span><b>09:00 – 14:00</b></div>
         <div class="row"><span data-ru="Суббота">שבת</span><b style="color:#a12727" data-ru="Только экстренные случаи">מקרה חירום בלבד</b></div>
     </div>
+     </div>
 
     <!-- שאלות נפוצות -->
     <h2 data-ru="❓ Частые вопросы">❓ שאלות נפוצות</h2>
@@ -519,16 +520,24 @@
     const firebaseConfig = {
         databaseURL: "https://mr-services26-default-rtdb.firebaseio.com"
     };
-    if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
+    // אם Firebase לא נטען (חסימה / אינטרנט חלש) – שאר האתר ממשיך לעבוד
+    let reviewsRef = null;
+    try {
+        if (typeof firebase === 'undefined') throw new Error('Firebase SDK not loaded');
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        reviewsRef = firebase.database().ref('reviews');
+    } catch (e) {
+        console.error('Firebase init error:', e);
+        reviewsRef = null;
     }
-    const database = firebase.database();
-    const reviewsRef = database.ref('reviews');
 
     let allReviews = [];
     let reviewsLoaded = false, reviewsError = false;
     let lang = 'he';
     const waFallback = document.getElementById('waFallback');
+    if (!reviewsRef) reviewsError = true;
 
     const reviewForm = document.getElementById('reviewForm');
     const reviewsList = document.getElementById('reviewsList');
@@ -554,6 +563,7 @@
             loadErr: 'לא הצלחנו לטעון את התגובות כרגע. נסו לרענן את הדף.',
             upFail: n => `${n} תמונות לא הועלו. התגובה תישמר בלי התמונות האלה.`,
             saved: '✅ התגובה נשמרה והופיעה באתר. אם וואטסאפ לא נפתח, לחצו על הכפתור:',
+            notSaved: '⚠️ התגובה לא נשמרה באתר כרגע (בעיית חיבור), אבל אפשר לשלוח אותה אלינו בוואטסאפ:',
             waSend: '💬 שלחו לנו בוואטסאפ'
         },
         ru: {
@@ -570,6 +580,7 @@
             loadErr: 'Не удалось загрузить отзывы. Обновите страницу.',
             upFail: n => `Не удалось загрузить фото: ${n}. Отзыв будет сохранён без них.`,
             saved: '✅ Отзыв сохранён и появился на сайте. Если WhatsApp не открылся, нажмите кнопку:',
+            notSaved: '⚠️ Отзыв сейчас не сохранён на сайте (проблема с соединением), но вы можете отправить его нам в WhatsApp:',
             waSend: '💬 Отправить нам в WhatsApp'
         }
     };
@@ -604,11 +615,9 @@
         if (lang !== 'ru') return cat;
         const opt = Array.from(document.getElementById('reviewCategory').options).find(o => o.value === cat);
         return opt ? opt.dataset.ru : cat;
-    
+    }
 
-    
-    // 
-    ===== פתוח / סגור לפי שעון ישראל =====
+    // ===== פתוח / סגור לפי שעון ישראל =====
     function updateStatus() {
         const p = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Jerusalem', weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: false }).formatToParts(new Date());
         const get = t => p.find(x => x.type === t).value;
@@ -736,7 +745,7 @@
     }
 
     // טעינת תגובות בזמן אמת עבור כל המשתמשים
-    reviewsRef.on('value', (snapshot) => {
+    if (reviewsRef) reviewsRef.on('value', (snapshot) => {
         const data = snapshot.val();
         reviewsLoaded = true;
         reviewsError = false;
@@ -772,9 +781,8 @@
         }
 
         if (imageFiles.length > 10) {
-            alert(M[lang].max);
-            return;
-        }
+            alert(M[lang].
+            }
 
         submitBtn.disabled = true;
         submitBtn.innerHTML = M[lang].sending;
@@ -810,17 +818,27 @@
 
         let newReview = { name, category, rating, text, date, imageUrls };
         
+        // שמירה באתר; גם אם נכשלה – עדיין אפשר לשלוח את התגובה בוואטסאפ
+        let savedOnSite = true;
         try {
+            if (!reviewsRef) throw new Error('Firebase unavailable');
             let newRef = reviewsRef.push();
             await newRef.set(newReview);
+        } catch (error) {
+            savedOnSite = false;
+            console.error('Error saving review:', error);
+        }
 
+        try {
             submitBtn.disabled = false;
             submitBtn.innerHTML = M[lang].send;
 
-            reviewForm.reset();
-            reviewRatingInput.value = '5';
-            paintStars(5);
-            filterCategory.value = 'all';
+            if (savedOnSite) {
+                reviewForm.reset();
+                reviewRatingInput.value = '5';
+                paintStars(5);
+                filterCategory.value = 'all';
+            }
 
             // ההודעה לוואטסאפ נשארת בעברית כדי שתקרא אותה בקלות
             let whatsappMessage = `*💬 תגובה חדשה התקבלה באתר!*%0A%0A` +
@@ -839,7 +857,7 @@
             let whatsappUrl = `https://wa.me/972559423309?text=${whatsappMessage}`;
             window.open(whatsappUrl, '_blank');
             // אם הדפדפן חסם את החלון (קורה בנייד אחרי העלאת תמונות) – כפתור ידני
-            waFallback.innerHTML = `<div>${M[lang].saved}</div><a class="btn" href="${whatsappUrl}" target="_blank" rel="noopener">${M[lang].waSend}</a>`;
+            waFallback.innerHTML = `<div>${savedOnSite ? M[lang].saved : M[lang].notSaved}</div><a class="btn" href="${whatsappUrl}" target="_blank" rel="noopener">${M[lang].waSend}</a>`;
         } catch (error) {
             console.error('Error saving review:', error);
             alert(M[lang].err);
