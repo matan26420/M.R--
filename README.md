@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ – כפתור ידני!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -9,14 +9,6 @@
     <meta property="og:title" content="M.R. הכל לבית – שיפוצים, אינסטלציה, חשמל והובלות">
     <meta property="og:description" content="שירות מקיף, מקצועי ומהיר מקרית שמונה ועד באר שבע">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://matan26420.github.io/M.R--/">
-    <meta property="og:image" content="https://matan26420.github.io/M.R--/1793908641410.jpg">
-    <link rel="canonical" href="https://matan26420.github.io/M.R--/">
-    <meta property="og:locale" content="he_IL">
-    <meta property="og:locale:alternate" content="ru_RU">
-    <meta property="og:site_name" content="M.R. הכל לבית">
-    <meta name="twitter:card" content="summary">
-    <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#007bff">
 
     <!-- נתונים מובנים לגוגל -->
@@ -25,8 +17,6 @@
       "@context": "https://schema.org",
       "@type": "HomeAndConstructionBusiness",
       "name": "M.R. הכל לבית",
-      "url": "https://matan26420.github.io/M.R--/",
-      "image": "https://matan26420.github.io/M.R--/1793908641410.jpg",
       "alternateName": "M.R. Всё для дома",
       "description": "אינסטלציה, חשמל, צבע, חידוש רהיטים, ניקיון, הריסות, שיפוצים, גבס והובלות מקרית שמונה ועד באר שבע",
       "telephone": "+972559423309",
@@ -35,7 +25,7 @@
         {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"], "opens": "08:00", "closes": "20:00"},
         {"@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "09:00", "closes": "14:00"}
       ],
-      "hasMap": "https://maps.app.goo.gl/woXp3rvCSqteKPa16?g_st=awb",
+      "hasMap": "https://www.google.com/maps?cid=16449588355030326794",
       "sameAs": ["https://www.instagram.com/m.r26420", "https://www.tiktok.com/@m.r26420", "https://www.b144.co.il/b144_sip/401D0D1A4370655D4011001240/"]
     }
     </script>
@@ -110,9 +100,7 @@
         /* הלוגו מרובע, מוגדל וללא מסגרת כחולה */
         .brand-logo-img {
             width: 260px;
-            max-width: 100%;
-            height: auto;
-            aspect-ratio: 1 / 1;
+            height: 260px;
             border-radius: 12px;
             object-fit: cover;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
@@ -268,11 +256,6 @@
         }
         .star:active { transform: scale(1.12); }
         .star-hint { font-size: 12px; color: #888; margin-top: 2px; }
-        .review-images-grid a { display: block; }
-        .stars-container:focus-visible, a:focus-visible, button:focus-visible, summary:focus-visible,
-        select:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #ffc107; outline-offset: 2px; }
-        #waFallback { margin-top: 12px; text-align: center; font-weight: bold; color: #176b2c; }
-        #waFallback a.btn { background: #25d366; margin-top: 8px; }
 
         /* כפתורי גוגל ו-144 */
         .other-reviews { background: #f4f8ff; border-radius: 8px; padding: 14px; margin-top: 20px; text-align: center; }
@@ -393,7 +376,6 @@
         <div class="row"><span data-ru="Пятница">שישי</span><b>09:00 – 14:00</b></div>
         <div class="row"><span data-ru="Суббота">שבת</span><b style="color:#a12727" data-ru="Только экстренные случаи">מקרה חירום בלבד</b></div>
     </div>
-     </div>
 
     <!-- שאלות נפוצות -->
     <h2 data-ru="❓ Частые вопросы">❓ שאלות נפוצות</h2>
@@ -429,7 +411,7 @@
         <form id="reviewForm">
             <div class="form-group">
                 <label for="reviewerName" data-ru="Полное имя:">שם מלא:</label>
-                <input type="text" id="reviewerName" required maxlength="50" placeholder="הכנס את שמך" data-ru-ph="Введите ваше имя">
+                <input type="text" id="reviewerName" required placeholder="הכנס את שמך" data-ru-ph="Введите ваше имя">
             </div>
 
             <div class="form-group">
@@ -453,21 +435,21 @@
 
             <div class="form-group">
                 <label data-ru="Оценка звёздами (нажмите на звезду):">דירוג כוכבים (לחץ על כוכב לבחירה):</label>
-                <div class="stars-container" id="starPicker" tabindex="0" role="slider" aria-label="דירוג" aria-valuemin="0.5" aria-valuemax="5" aria-valuenow="5">
+                <div class="stars-container" id="starPicker">
                     <span class="star">★<span class="fill">★</span></span>
                     <span class="star">★<span class="fill">★</span></span>
                     <span class="star">★<span class="fill">★</span></span>
                     <span class="star">★<span class="fill">★</span></span>
                     <span class="star">★<span class="fill">★</span></span>
                 </div>
-                <div class="star-hint" data-ru="Нажмите на левую или правую половину звезды, чтобы выбрать половинку">לחיצה על חצי כוכב בוחרת חצי דירוג</div>
+                <div class="star-hint" data-ru="Нажмите на левую или правую половину звезды, чтобы выбрать половинку" data-he-hint>לחיצה על חצי כוכב בוחרת חצי דירוג</div>
                 <div style="margin-top: 5px; font-weight: bold; color: #007bff;" id="ratingText"></div>
                 <input type="hidden" id="reviewRating" value="5" required>
             </div>
 
             <div class="form-group">
                 <label for="reviewText" data-ru="Ваш отзыв:">התגובה שלך:</label>
-                <textarea id="reviewText" rows="3" required maxlength="1000" placeholder="כתוב כאן את חוות דעתך..." data-ru-ph="Напишите здесь свой отзыв..."></textarea>
+                <textarea id="reviewText" rows="3" required placeholder="כתוב כאן את חוות דעתך..." data-ru-ph="Напишите здесь свой отзыв..."></textarea>
             </div>
 
             <div class="form-group">
@@ -476,20 +458,19 @@
             </div>
 
             <button type="submit" class="btn" id="submitBtn" style="background: #28a745; width: 100%; border: none; cursor: pointer; font-size: 16px;"></button>
-            <div id="waFallback"></div>
         </form>
 
         <div class="other-reviews">
             <p data-ru="Хотите оставить отзыв и в других местах?">רוצים לכתוב עלינו גם בגוגל או ב-144?</p>
             <div class="social-btns-row">
-                <a class="social-btn google-btn" href="https://maps.app.goo.gl/woXp3rvCSqteKPa16?g_st=awb" target="_blank" rel="noopener" data-ru="⭐ Отзыв в Google">⭐ ביקורת בגוגל</a>
+                <a class="social-btn google-btn" href="https://www.google.com/maps?cid=16449588355030326794" target="_blank" rel="noopener" data-ru="⭐ Отзыв в Google">⭐ ביקורת בגוגל</a>
                 <a class="social-btn b144-btn" href="https://www.b144.co.il/b144_sip/401D0D1A4370655D4011001240/" target="_blank" rel="noopener" data-ru="📒 Отзыв в 144">📒 ביקורת ב-144</a>
             </div>
         </div>
 
         <div style="margin-top: 35px;">
             <div class="filter-container" style="text-align: right; margin-bottom: 15px;">
-                <label for="filterCategory" style="font-weight: bold; margin-inline-end: 10px;" data-ru="Фильтр отзывов по категории:">סנן תגובות לפי קטגוריה:</label>
+                <label for="filterCategory" style="font-weight: bold; margin-left: 10px;" data-ru="Фильтр отзывов по категории:">סנן תגובות לפי קטגוריה:</label>
                 <select id="filterCategory" onchange="renderReviews()" style="width: 200px; padding: 5px;">
                     <option value="all" data-ru="Показать все">הצג הכל</option>
                     <option value="אינסטלציה" data-ru="Сантехника">אינסטלציה</option>
@@ -520,24 +501,14 @@
     const firebaseConfig = {
         databaseURL: "https://mr-services26-default-rtdb.firebaseio.com"
     };
-    // אם Firebase לא נטען (חסימה / אינטרנט חלש) – שאר האתר ממשיך לעבוד
-    let reviewsRef = null;
-    try {
-        if (typeof firebase === 'undefined') throw new Error('Firebase SDK not loaded');
-        if (!firebase.apps.length) {
-            firebase.initializeApp(firebaseConfig);
-        }
-        reviewsRef = firebase.database().ref('reviews');
-    } catch (e) {
-        console.error('Firebase init error:', e);
-        reviewsRef = null;
+    if (!firebase.apps.length) {
+        firebase.initializeApp(firebaseConfig);
     }
+    const database = firebase.database();
+    const reviewsRef = database.ref('reviews');
 
     let allReviews = [];
-    let reviewsLoaded = false, reviewsError = false;
     let lang = 'he';
-    const waFallback = document.getElementById('waFallback');
-    if (!reviewsRef) reviewsError = true;
 
     const reviewForm = document.getElementById('reviewForm');
     const reviewsList = document.getElementById('reviewsList');
@@ -559,12 +530,7 @@
             max: 'ניתן להעלות עד 10 תמונות בלבד.',
             err: 'שגיאה בשמירת התגובה בבסיס הנתונים. אנא נסה שוב.',
             open: '🟢 פתוחים עכשיו', closed: '🔴 סגור כרגע – שלחו הודעה ונחזור אליכם', sat: '🟠 שבת – מקרי חירום בלבד',
-            alt: 'תמונת עבודה',
-            loadErr: 'לא הצלחנו לטעון את התגובות כרגע. נסו לרענן את הדף.',
-            upFail: n => `${n} תמונות לא הועלו. התגובה תישמר בלי התמונות האלה.`,
-            saved: '✅ התגובה נשמרה והופיעה באתר. אם וואטסאפ לא נפתח, לחצו על הכפתור:',
-            notSaved: '⚠️ התגובה לא נשמרה באתר כרגע (בעיית חיבור), אבל אפשר לשלוח אותה אלינו בוואטסאפ:',
-            waSend: '💬 שלחו לנו בוואטסאפ'
+            alt: 'תמונת עבודה'
         },
         ru: {
             rating: v => `Выбранная оценка: ${v} из 5 звёзд`,
@@ -576,12 +542,7 @@
             max: 'Можно загрузить не более 10 фото.',
             err: 'Ошибка сохранения отзыва. Попробуйте ещё раз.',
             open: '🟢 Сейчас работаем', closed: '🔴 Сейчас закрыто – напишите, и мы свяжемся с вами', sat: '🟠 Суббота – только экстренные случаи',
-            alt: 'Фото работы',
-            loadErr: 'Не удалось загрузить отзывы. Обновите страницу.',
-            upFail: n => `Не удалось загрузить фото: ${n}. Отзыв будет сохранён без них.`,
-            saved: '✅ Отзыв сохранён и появился на сайте. Если WhatsApp не открылся, нажмите кнопку:',
-            notSaved: '⚠️ Отзыв сейчас не сохранён на сайте (проблема с соединением), но вы можете отправить его нам в WhatsApp:',
-            waSend: '💬 Отправить нам в WhatsApp'
+            alt: 'Фото работы'
         }
     };
 
@@ -634,7 +595,6 @@
     // בחירת דירוג: 5 כוכבים, אפשר לבחור גם חצי כוכב (לחיצה על חצי הכוכב)
     function paintStars(val) {
         reviewRatingInput.value = val;
-        document.getElementById('starPicker').setAttribute('aria-valuenow', val);
         ratingText.innerHTML = M[lang].rating(val);
         stars.forEach((s, i) => {
             const part = Math.max(0, Math.min(1, val - i));
@@ -651,36 +611,6 @@
         });
     });
 
-    document.getElementById('starPicker').addEventListener('keydown', (e) => {
-        const rtl = document.documentElement.dir === 'rtl';
-        const up = e.key === 'ArrowUp' || e.key === (rtl ? 'ArrowLeft' : 'ArrowRight');
-        const down = e.key === 'ArrowDown' || e.key === (rtl ? 'ArrowRight' : 'ArrowLeft');
-        if (!up && !down) return;
-        e.preventDefault();
-        paintStars(Math.max(0.5, Math.min(5, parseFloat(reviewRatingInput.value) + (up ? 0.5 : -0.5))));
-    });
-
-    // הקטנת תמונות לפני העלאה (מהיר יותר בנייד); אם נכשל – מעלים את המקור
-    function shrinkImage(file, max = 1600) {
-        return new Promise(resolve => {
-            if (!file.type || !file.type.startsWith('image/') || file.type === 'image/gif') return resolve(file);
-            const img = new Image();
-            const url = URL.createObjectURL(file);
-            img.onload = () => {
-                URL.revokeObjectURL(url);
-                const k = Math.min(1, max / Math.max(img.width, img.height));
-                if (k === 1 && file.size < 1.5 * 1024 * 1024) return resolve(file);
-                const c = document.createElement('canvas');
-                c.width = Math.round(img.width * k);
-                c.height = Math.round(img.height * k);
-                c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
-                c.toBlob(b => resolve(b || file), 'image/jpeg', 0.85);
-            };
-            img.onerror = () => { URL.revokeObjectURL(url); resolve(file); };
-            img.src = url;
-        });
-    }
-
     function getStarsHTML(rating) {
         let fulls = Math.floor(rating);
         let hasHalf = (rating - fulls) >= 0.5;
@@ -692,14 +622,6 @@
 
     function renderReviews() {
         reviewsList.innerHTML = '';
-        if (reviewsError) {
-            reviewsList.innerHTML = `<p style="color: #a12727; text-align: center; padding: 10px;">${M[lang].loadErr}</p>`;
-            return;
-        }
-        if (!reviewsLoaded) {
-            reviewsList.innerHTML = `<p style="color: #777; text-align: center; padding: 10px;">${M[lang].loading}</p>`;
-            return;
-        }
         let selectedFilter = filterCategory.value;
 
         let filteredReviews = allReviews;
@@ -720,7 +642,7 @@
             let imagesHTML = '';
             if (review.imageUrls && review.imageUrls.length > 0) {
                 imagesHTML = `<div class="review-images-grid">` + 
-                    review.imageUrls.filter(u => /^https:\/\//.test(u)).map(url => `<a href="${escapeHTML(url)}" target="_blank" rel="noopener"><img src="${escapeHTML(url)}" alt="${M[lang].alt}" class="review-image" loading="lazy"></a>`).join('') + 
+                    review.imageUrls.map(url => `<img src="${escapeHTML(url)}" alt="${M[lang].alt}" class="review-image" loading="lazy">`).join('') + 
                     `</div>`;
             }
 
@@ -745,10 +667,8 @@
     }
 
     // טעינת תגובות בזמן אמת עבור כל המשתמשים
-    if (reviewsRef) reviewsRef.on('value', (snapshot) => {
+    reviewsRef.on('value', (snapshot) => {
         const data = snapshot.val();
-        reviewsLoaded = true;
-        reviewsError = false;
         allReviews = [];
         if (data) {
             Object.keys(data).forEach(key => {
@@ -757,10 +677,6 @@
                 }
             });
         }
-        renderReviews();
-    }, (error) => {
-        console.error('Firebase read error:', error);
-        reviewsError = true;
         renderReviews();
     });
 
@@ -781,64 +697,51 @@
         }
 
         if (imageFiles.length > 10) {
-            alert(M[lang].
-            }
+            alert(M[lang].max);
+            return;
+        }
 
         submitBtn.disabled = true;
         submitBtn.innerHTML = M[lang].sending;
-        waFallback.innerHTML = '';
 
         let imageUrls = [];
-        let failedUploads = 0;
 
-        for (let i = 0; i < imageFiles.length; i++) {
-            try {
-                let blob = await shrinkImage(imageFiles[i]);
-                let formData = new FormData();
-                formData.append('image', blob, blob.name || 'photo.jpg');
+        if (imageFiles.length > 0) {
+            for (let i = 0; i < imageFiles.length; i++) {
+                try {
+                    let formData = new FormData();
+                    formData.append('image', imageFiles[i]);
 
-                let response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
-                    method: 'POST',
-                    body: formData
-                });
-                let result = await response.json();
-
-                if (result && result.success) {
-                    imageUrls.push(result.data.url);
-                } else {
-                    failedUploads++;
-                    console.error('ImgBB Error for image ' + i, result);
+                    let response = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    let result = await response.json();
+                    
+                    if (result && result.success) {
+                        imageUrls.push(result.data.url);
+                    } else {
+                        console.error('ImgBB Error for image ' + i, result);
+                    }
+                } catch (error) {
+                    console.error('Error uploading image ' + i, error);
                 }
-            } catch (error) {
-                failedUploads++;
-                console.error('Error uploading image ' + i, error);
             }
         }
-        if (failedUploads > 0) alert(M[lang].upFail(failedUploads));
 
         let newReview = { name, category, rating, text, date, imageUrls };
         
-        // שמירה באתר; גם אם נכשלה – עדיין אפשר לשלוח את התגובה בוואטסאפ
-        let savedOnSite = true;
         try {
-            if (!reviewsRef) throw new Error('Firebase unavailable');
             let newRef = reviewsRef.push();
             await newRef.set(newReview);
-        } catch (error) {
-            savedOnSite = false;
-            console.error('Error saving review:', error);
-        }
 
-        try {
             submitBtn.disabled = false;
             submitBtn.innerHTML = M[lang].send;
 
-            if (savedOnSite) {
-                reviewForm.reset();
-                reviewRatingInput.value = '5';
-                paintStars(5);
-                filterCategory.value = 'all';
-            }
+            reviewForm.reset();
+            reviewRatingInput.value = '5';
+            paintStars(5);
+            filterCategory.value = 'all';
 
             // ההודעה לוואטסאפ נשארת בעברית כדי שתקרא אותה בקלות
             let whatsappMessage = `*💬 תגובה חדשה התקבלה באתר!*%0A%0A` +
@@ -856,8 +759,6 @@
 
             let whatsappUrl = `https://wa.me/972559423309?text=${whatsappMessage}`;
             window.open(whatsappUrl, '_blank');
-            // אם הדפדפן חסם את החלון (קורה בנייד אחרי העלאת תמונות) – כפתור ידני
-            waFallback.innerHTML = `<div>${savedOnSite ? M[lang].saved : M[lang].notSaved}</div><a class="btn" href="${whatsappUrl}" target="_blank" rel="noopener">${M[lang].waSend}</a>`;
         } catch (error) {
             console.error('Error saving review:', error);
             alert(M[lang].err);
@@ -873,6 +774,3 @@
     setLang(savedLang);
     setInterval(updateStatus, 60000);
 </script>
-
-</body>
-</html>
