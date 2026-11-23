@@ -770,6 +770,16 @@
     // אתחול: דירוג ברירת מחדל 5 כוכבים, ושפה שמורה
     paintStars(5);
     let savedLang = 'he';
+ <?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://matan26420.github.io/M.R--/</loc>
+    <lastmod>2026-11-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
+
     try { savedLang = localStorage.getItem('lang') || 'he'; } catch (e) {}
     setLang(savedLang);
     setInterval(updateStatus, 60000);
