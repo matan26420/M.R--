@@ -1,4 +1,4 @@
-!DOCTYPE html>
+!M.R הכול לבית>
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
